@@ -10,6 +10,7 @@ media:
 
 content:
   # ---------------- 下载渠道（最常改） ----------------
+
   - name: downloads
     label: 下载渠道
     type: file
@@ -19,7 +20,9 @@ content:
         label: 版本与下载
         type: object
         list:
-          collapsible: true
+          collapsible:
+            collapsed: true
+            summary: "{fields.name} · {fields.versionId}"
         fields:
           - name: id
             label: 内部 ID（唯一，别改）
@@ -53,7 +56,10 @@ content:
           - name: channels
             label: 网盘渠道
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: false
+                summary: "{fields.provider} — {fields.code}"
             fields:
               - name: provider
                 label: 网盘
@@ -79,6 +85,7 @@ content:
                 description: 例如 readme#v5-系统版
 
   # ---------------- 版本信息 ----------------
+
   - name: versions
     label: 版本信息
     type: file
@@ -88,7 +95,10 @@ content:
         label: 版本列表
         type: object
         list:
-          collapsible: true
+          min: 1
+          collapsible:
+            collapsed: true
+            summary: "{fields.label} · {fields.baseSystem}"
         fields:
           - name: id
             label: 内部 ID
@@ -143,6 +153,7 @@ content:
             list: true
 
   # ---------------- 常见问题 ----------------
+
   - name: faq
     label: 常见问题
     type: file
@@ -152,12 +163,14 @@ content:
         label: 问答列表
         type: object
         list:
-          collapsible: true
+          collapsible:
+            collapsed: true
+            summary: "{fields.question}"
         fields:
           - name: id
-            label: 锚点 ID（唯一）
+            label: 锚点 ID（唯一，改前先看说明）
             type: string
-            description: 会变成 /docs/faq/#这个值
+            description: 会变成 /docs/faq/#这个值。已有条目请不要改，改了会断掉别人收藏的链接
           - name: question
             label: 问题
             type: string
@@ -181,6 +194,95 @@ content:
             description: 例如 /docs/troubleshooting/
 
   # ---------------- 站点与免责声明 ----------------
+
+  - name: shots
+    label: 截图
+    type: file
+    path: src/data/shots.json
+    fields:
+      - name: SHOTS
+        label: 截图清单
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.caption} · {fields.category}"
+        fields:
+          - name: slug
+            label: 标识（页面用 shot("这个值") 引用）
+            type: string
+          - name: file
+            label: 图片文件
+            type: image
+            description: 换图请上传到 src/assets/screens/，文件名必须与上面的 slug 一致
+          - name: caption
+            label: 短标题
+            type: string
+          - name: alt
+            label: 图片描述（无障碍与 SEO 用，必填）
+            type: text
+          - name: category
+            label: 分类
+            type: string
+            description: desktop / terminal / ai / tools / system / login / boot / launcher / brand
+          - name: product
+            label: 所属产品
+            type: string
+            description: kde 或 i3
+          - name: version
+            label: 所属版本
+            type: string
+            description: v5 / v4 / v3 / v2 / i3
+          - name: usedOn
+            label: 出现在哪些页面
+            type: string
+            list: true
+            description: 例如 /products/kde/
+          - name: thin
+            label: 窄条图（不放大）
+            type: boolean
+          - name: sourceRef
+            label: 来源说明
+            type: string
+          - name: sourceUrl
+            label: 远程原图地址（一般不用改）
+            type: string
+
+  # ---------------- 文档（MDX） ----------------
+
+  - name: docs
+    label: 文档
+    type: collection
+    path: src/content/docs
+    fields:
+      - name: title
+        label: 标题
+        type: string
+      - name: description
+        label: 摘要
+        type: text
+      - name: category
+        label: 分类
+        type: string
+        description: 入门 / 使用技巧 / 故障排查 / 常见问题
+      - name: order
+        label: 排序
+        type: number
+      - name: updated
+        label: 更新日期
+        type: date
+      - name: sources
+        label: 依据（每行一条）
+        type: string
+        list: true
+      - name: relatedIssues
+        label: 关联 issue 编号
+        type: number
+        list: true
+      - name: body
+        label: 正文
+        type: rich-text
+
   - name: site
     label: 站点设置
     type: file
@@ -231,87 +333,3 @@ content:
           - { name: screenshots, label: 截图版权, type: text }
 
   # ---------------- 截图 ----------------
-  - name: shots
-    label: 截图
-    type: file
-    path: src/data/shots.json
-    fields:
-      - name: SHOTS
-        label: 截图清单
-        type: object
-        list:
-          collapsible: true
-        fields:
-          - name: slug
-            label: 标识（页面用 shot("这个值") 引用）
-            type: string
-          - name: file
-            label: 图片文件
-            type: image
-            description: 换图请上传到 src/assets/screens/，文件名必须与上面的 slug 一致
-          - name: caption
-            label: 短标题
-            type: string
-          - name: alt
-            label: 图片描述（无障碍与 SEO 用，必填）
-            type: text
-          - name: category
-            label: 分类
-            type: string
-            description: desktop / terminal / ai / tools / system / login / boot / launcher / brand
-          - name: product
-            label: 所属产品
-            type: string
-            description: kde 或 i3
-          - name: version
-            label: 所属版本
-            type: string
-            description: v5 / v4 / v3 / v2 / i3
-          - name: usedOn
-            label: 出现在哪些页面
-            type: string
-            list: true
-            description: 例如 /products/kde/
-          - name: thin
-            label: 窄条图（不放大）
-            type: boolean
-          - name: sourceRef
-            label: 来源说明
-            type: string
-          - name: sourceUrl
-            label: 远程原图地址（一般不用改）
-            type: string
-
-  # ---------------- 文档（MDX） ----------------
-  - name: docs
-    label: 文档
-    type: collection
-    path: src/content/docs
-    fields:
-      - name: title
-        label: 标题
-        type: string
-      - name: description
-        label: 摘要
-        type: text
-      - name: category
-        label: 分类
-        type: string
-        description: 入门 / 使用技巧 / 故障排查 / 常见问题
-      - name: order
-        label: 排序
-        type: number
-      - name: updated
-        label: 更新日期
-        type: date
-      - name: sources
-        label: 依据（每行一条）
-        type: string
-        list: true
-      - name: relatedIssues
-        label: 关联 issue 编号
-        type: number
-        list: true
-      - name: body
-        label: 正文
-        type: rich-text
