@@ -65,6 +65,7 @@ npm run validate     # 内容/素材/链接校验
 | `src/data/versions.json` | 版本号、内核、桌面、默认账号、变更列表 |
 | `src/data/faq.json` | 常见问题 |
 | `src/data/site.json` | 站点信息与免责声明 |
+| `src/data/shots.json` | 截图标题、描述、分类（换图另见下文） |
 | `src/content/docs/*.mdx` | 文档正文 |
 
 配置文件是根目录的 `.pages.yml`。
@@ -106,37 +107,33 @@ npm run validate     # 内容/素材/链接校验
 npm run fonts:subset
 ```
 
-### 加截图
+### 加 / 换截图
 
-1. 在 `scripts/assets.manifest.json` 加一条：
+图片和元数据是分开的两份东西：
 
-```json
-{
-  "slug": "v4-ui-example",
-  "url": "https://.../xxx.png",
-  "group": "kde-v4",
-  "category": "desktop",
-  "product": "kde",
-  "version": "v4",
-  "alt": "描述（必填，给人看的）",
-  "caption": "短标题（必填）",
-  "sourceRef": "readme#章节",
-  "usedOn": ["/products/kde/"]
-}
-```
+| 东西 | 位置 | 谁维护 |
+| --- | --- | --- |
+| 图片文件 | `src/assets/screens/<slug>.webp` | 后台可上传，或直接放文件 |
+| 标题/描述/分类 | `src/data/shots.json` | 后台可编辑 |
 
-2. 抓取并转码：
+**换一张图**：上传新文件到 `src/assets/screens/`，**文件名必须和 `shots.json` 里的 slug 一致**（例如 `v5-ui-03.webp`）。宽高由 Astro 构建时自动读取，不用填。
+
+**加一张图**：
+
+1. 把 `xxx.webp` 放进 `src/assets/screens/`
+2. 在后台「截图」里点「添加」，填 slug（要和文件名一致）、描述、分类
+3. 页面里用 `shot("xxx")` 引用
+
+**从远程地址抓新图**（可选）：在 `shots.json` 里给该条填 `sourceUrl`，然后执行
 
 ```bash
-npm run assets:fetch
-# 国内网络：
-# HTTPS_PROXY=http://127.0.0.1:7897 NODE_USE_ENV_PROXY=1 npm run assets:fetch
+npm run assets:fetch            # 只处理有 sourceUrl 的条目
+npm run assets:fetch -- --force # 强制重新下载覆盖
 ```
 
-3. 在页面里用 `shot("v4-ui-example")` 取用。
+脚本只负责下载 + 转 WebP，**不会改动 `shots.json`**。
 
-> **命名规则**：`{产品}-{版本}-{类别}-{语义}`。没有上下文的图不许臆造 caption
-> （1.0 就是这么标错的），宁可用「界面示例 01」这种中性描述。
+> 构建时会校验：`shots.json` 里每个 slug 都必须有对应的 `.webp` 文件，缺了会直接报错并指出文件名。
 
 ### 刷新 GitHub 数据
 
@@ -155,9 +152,9 @@ GITHUB_TOKEN=xxx npm run data:sync
 ```
 scripts/          素材抓取、数据同步、字体子集化、内容校验、OG 生成
   readme-snapshot.md   两份仓库 README 的存档 —— 所有数字的溯源底稿
-  assets.manifest.json 截图映射表（唯一事实源）
+  readme-snapshot-v5.md  V5 发布说明存档
 src/
-  assets/screens/     转码后的截图（webp，按产品/版本分目录）
+  assets/screens/     截图（webp，文件名 = shots.json 里的 slug）
   components/         layout / ui / media / home / product / download / docs
   content/docs/       8 篇 MDX 文档
   data/               所有结构化内容（版本、下载、FAQ、快捷键、工具…）

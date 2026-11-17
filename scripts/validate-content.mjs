@@ -51,11 +51,11 @@ const { FAQ } = await readData("faq");
 // 允许的网盘（与 downloads.ts 里的 PROVIDERS 保持一致）
 const VALID_PROVIDERS = new Set(["quark", "baidu", "tianyi"]);
 
-// 素材清单直接读 JSON（不走 shots.ts，避免依赖 Astro 的图片 glob）
-const shotMeta = JSON.parse(
-  await readFile(path.join(ROOT, "src/data/shots.meta.json"), "utf8"),
+// 截图清单（人工/后台维护）
+const shotRegistry = JSON.parse(
+  await readFile(path.join(ROOT, "src/data/shots.json"), "utf8"),
 );
-const SHOTS = shotMeta.items;
+const SHOTS = shotRegistry.SHOTS;
 
 const ALLOWED_HOSTS = new Set(["pan.quark.cn", "pan.baidu.com", "cloud.189.cn"]);
 
@@ -106,11 +106,11 @@ if (!SHOTS.length) fail("没有加载到任何素材");
 for (const s of SHOTS) {
   if (!s.alt?.trim()) fail(`素材 ${s.slug} 缺少 alt`);
   if (!s.caption?.trim()) fail(`素材 ${s.slug} 缺少 caption`);
-  if (!s.width || !s.height) fail(`素材 ${s.slug} 缺少真实宽高`);
+  if (!s.slug?.trim()) fail("有素材缺少 slug");
   try {
-    await stat(path.join(ROOT, "src/assets/screens", s.group, `${s.slug}.webp`));
+    await stat(path.join(ROOT, "src/assets/screens", `${s.slug}.webp`));
   } catch {
-    fail(`素材文件缺失：src/assets/screens/${s.group}/${s.slug}.webp`);
+    fail(`素材文件缺失：src/assets/screens/${s.slug}.webp`);
   }
 }
 
@@ -123,12 +123,18 @@ const sourceFiles = await walk(path.join(ROOT, "src"), [
   ".json",
   ".css",
 ]);
+// shots.json 里的 sourceUrl 只是抓取来源，运行时不会渲染，单独放行；
+// 产物层面的检查交给 scripts/check-dist.mjs（postbuild 执行）。
+const SOURCE_URL_ALLOWLIST = new Set(["src/data/shots.json"]);
+
 for (const file of sourceFiles) {
+  const rel = path.relative(ROOT, file).split(path.sep).join("/");
+  if (SOURCE_URL_ALLOWLIST.has(rel)) continue;
   const text = await readFile(file, "utf8");
   for (const domain of ["myqcloud.com", "raw.githubusercontent.com"]) {
     if (text.includes(domain)) {
       fail(
-        `源码中残留外链图片域名 ${domain}：${path.relative(ROOT, file)}（素材必须自托管）`,
+        `源码中残留外链图片域名 ${domain}：${rel}（素材必须自托管）`,
       );
     }
   }

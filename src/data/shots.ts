@@ -1,5 +1,13 @@
+/**
+ * 截图注册表。
+ *
+ * 元数据（slug / alt / caption / 分类）在 shots.json —— 后台可编辑。
+ * 图片文件放 src/assets/screens/<slug>.webp，宽高由 Astro 从文件本身读取，
+ * 不再单独维护一份尺寸清单。
+ */
+
 import type { ImageMetadata } from "astro";
-import meta from "./shots.meta.json";
+import registry from "./shots.json";
 
 export type ShotCategory =
   | "desktop"
@@ -12,12 +20,24 @@ export type ShotCategory =
   | "launcher"
   | "brand";
 
+interface ShotRecord {
+  slug: string;
+  category: string;
+  product: string;
+  version: string;
+  alt: string;
+  caption: string;
+  sourceRef: string;
+  usedOn: string[];
+  thin: boolean;
+  sourceUrl?: string;
+}
+
 export interface Shot {
   slug: string;
-  group: string;
   category: ShotCategory;
   product: "kde" | "i3";
-  version: "v2" | "v3" | "v4" | "i3";
+  version: string;
   alt: string;
   caption: string;
   sourceRef: string;
@@ -28,14 +48,10 @@ export interface Shot {
   image: ImageMetadata;
 }
 
-/**
- * 图片用 import.meta.glob 静态引入，Astro 才能拿到真实宽高并生成多尺寸产物。
- * 尺寸来自 shots.meta.json（由 fetch-assets 用 sharp 读出，不手抄）。
- */
-const modules = import.meta.glob<ImageMetadata>(
-  "../assets/screens/*/*.webp",
-  { eager: true, import: "default" },
-);
+const modules = import.meta.glob<ImageMetadata>("../assets/screens/*.webp", {
+  eager: true,
+  import: "default",
+});
 
 const bySlug = new Map<string, ImageMetadata>();
 for (const [file, image] of Object.entries(modules)) {
@@ -43,14 +59,28 @@ for (const [file, image] of Object.entries(modules)) {
   if (slug) bySlug.set(slug, image);
 }
 
-export const SHOTS: Shot[] = meta.items.map((item) => {
+export const SHOTS: Shot[] = (registry.SHOTS as ShotRecord[]).map((item) => {
   const image = bySlug.get(item.slug);
   if (!image) {
     throw new Error(
-      `素材缺失：manifest 里有 ${item.slug}，但 src/assets/screens 下找不到对应 webp。请运行 npm run assets:fetch`,
+      `截图文件缺失：shots.json 里有 "${item.slug}"，但 src/assets/screens/${item.slug}.webp 不存在。` +
+        `请把图片放到该路径，或运行 npm run assets:fetch 重新抓取。`,
     );
   }
-  return { ...item, category: item.category as ShotCategory, image } as Shot;
+  return {
+    slug: item.slug,
+    category: item.category as ShotCategory,
+    product: item.product === "i3" ? "i3" : "kde",
+    version: item.version,
+    alt: item.alt,
+    caption: item.caption,
+    sourceRef: item.sourceRef,
+    usedOn: item.usedOn ?? [],
+    thin: Boolean(item.thin),
+    width: image.width,
+    height: image.height,
+    image,
+  };
 });
 
 export const SHOTS_BY_SLUG = new Map(SHOTS.map((s) => [s.slug, s]));
@@ -59,13 +89,12 @@ export function shot(slug: string): Shot {
   const found = SHOTS_BY_SLUG.get(slug);
   if (!found) {
     throw new Error(
-      `未知素材 slug: ${slug}（可用：${SHOTS.map((s) => s.slug).join(", ")}）`,
+      `未知素材 slug: ${slug}（shots.json 里有：${SHOTS.map((s) => s.slug).slice(0, 8).join(", ")} …）`,
     );
   }
   return found;
 }
 
-/** 按 slug 列表取素材，顺序保持不变 */
 export function shots(slugs: string[]): Shot[] {
   return slugs.map(shot);
 }

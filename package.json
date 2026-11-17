@@ -12,7 +12,8 @@
     "assets:fetch": "node scripts/fetch-assets.mjs",
     "data:sync": "node scripts/sync-github.mjs",
     "fonts:subset": "python3 scripts/subset-fonts.py",
-    "validate": "node scripts/validate-content.mjs"
+    "validate": "node scripts/validate-content.mjs",
+    "postbuild": "node scripts/check-dist.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "8.1.6",

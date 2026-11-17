@@ -4,8 +4,9 @@
 # 改完点「保存」= 往仓库提交一次 commit，触发重新构建，1–2 分钟后线上生效。
 
 media:
-  input: public/shots
-  output: /shots
+  # 截图上传目录：换图时请上传到 src/assets/screens/，文件名必须与 slug 一致
+  input: src/assets/screens
+  output: /screens
 
 content:
   # ---------------- 下载渠道（最常改） ----------------
@@ -228,6 +229,58 @@ content:
           - { name: license, label: 许可证说明, type: text }
           - { name: usage, label: 使用范围, type: text }
           - { name: screenshots, label: 截图版权, type: text }
+
+  # ---------------- 截图 ----------------
+  - name: shots
+    label: 截图
+    type: file
+    path: src/data/shots.json
+    fields:
+      - name: SHOTS
+        label: 截图清单
+        type: object
+        list:
+          collapsible: true
+        fields:
+          - name: slug
+            label: 标识（页面用 shot("这个值") 引用）
+            type: string
+          - name: file
+            label: 图片文件
+            type: image
+            description: 换图请上传到 src/assets/screens/，文件名必须与上面的 slug 一致
+          - name: caption
+            label: 短标题
+            type: string
+          - name: alt
+            label: 图片描述（无障碍与 SEO 用，必填）
+            type: text
+          - name: category
+            label: 分类
+            type: string
+            description: desktop / terminal / ai / tools / system / login / boot / launcher / brand
+          - name: product
+            label: 所属产品
+            type: string
+            description: kde 或 i3
+          - name: version
+            label: 所属版本
+            type: string
+            description: v5 / v4 / v3 / v2 / i3
+          - name: usedOn
+            label: 出现在哪些页面
+            type: string
+            list: true
+            description: 例如 /products/kde/
+          - name: thin
+            label: 窄条图（不放大）
+            type: boolean
+          - name: sourceRef
+            label: 来源说明
+            type: string
+          - name: sourceUrl
+            label: 远程原图地址（一般不用改）
+            type: string
 
   # ---------------- 文档（MDX） ----------------
   - name: docs

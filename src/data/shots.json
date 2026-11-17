@@ -1,0 +1,1039 @@
+{
+  "$comment": "截图清单。后台可编辑；sourceUrl 只在需要重新抓取时用，站点用的是 src/assets/screens/<slug>.webp",
+  "SHOTS": [
+    {
+      "slug": "v4-ui-login",
+      "file": "src/assets/screens/v4-ui-login.webp",
+      "caption": "登录界面",
+      "alt": "V4 登录界面（SDDM / Plasma X11，用户 ZSS）",
+      "category": "login",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/",
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#界面示例（README 无标注，按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20250929110558394.png"
+    },
+    {
+      "slug": "v4-ui-boot",
+      "file": "src/assets/screens/v4-ui-boot.webp",
+      "caption": "启动加载界面",
+      "alt": "V4 启动加载界面（LOADING 85%）",
+      "category": "boot",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#界面示例（README 无标注，按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251009153426387.png"
+    },
+    {
+      "slug": "v4-ui-launcher",
+      "file": "src/assets/screens/v4-ui-launcher.webp",
+      "caption": "应用菜单",
+      "alt": "V4 应用菜单展开，左侧为渗透工具分类",
+      "category": "launcher",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#界面示例（README 无标注，按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251010143024393.png"
+    },
+    {
+      "slug": "v4-ui-neofetch",
+      "file": "src/assets/screens/v4-ui-neofetch.webp",
+      "caption": "终端 neofetch",
+      "alt": "V4 终端中的 neofetch 系统信息",
+      "category": "terminal",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#界面示例（README 无标注，按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251009160937652.png"
+    },
+    {
+      "slug": "v4-ui-ranger",
+      "file": "src/assets/screens/v4-ui-ranger.webp",
+      "caption": "ranger 文件管理",
+      "alt": "V4 中的 ranger 文件管理器与图片预览",
+      "category": "terminal",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/",
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#界面示例（README 无标注，按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251009161156543.png"
+    },
+    {
+      "slug": "v4-ui-ranger-config",
+      "file": "src/assets/screens/v4-ui-ranger-config.webp",
+      "caption": "ranger 配置编辑",
+      "alt": "在 vim 中编辑 ranger 配置文件 rc.conf",
+      "category": "terminal",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#界面示例（README 无标注，按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251009161226267.png"
+    },
+    {
+      "slug": "v4-ui-history",
+      "file": "src/assets/screens/v4-ui-history.webp",
+      "caption": "终端历史搜索",
+      "alt": "终端命令历史的模糊搜索",
+      "category": "terminal",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/",
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#界面示例（README 无标注，按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251009161305954.png"
+    },
+    {
+      "slug": "v4-ui-sqlmap",
+      "file": "src/assets/screens/v4-ui-sqlmap.webp",
+      "caption": "sqlmap 运行",
+      "alt": "在终端中运行 sqlmap 的 payload 检测过程",
+      "category": "tools",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#界面示例（README 无标注，按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251010115717913.png"
+    },
+    {
+      "slug": "v4-ui-terminal",
+      "file": "src/assets/screens/v4-ui-terminal.webp",
+      "caption": "终端输出",
+      "alt": "V4 终端输出（oh-my-zsh 相关日志）",
+      "category": "terminal",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#界面示例（README 无标注，按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251010115844886.png"
+    },
+    {
+      "slug": "v4-ai-login",
+      "file": "src/assets/screens/v4-ai-login.webp",
+      "caption": "启动 AI 终端并登录",
+      "alt": "在 V4 终端中启动 gemini-cli 并登录账号",
+      "category": "ai",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/",
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#AI 终端",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011151004104.png"
+    },
+    {
+      "slug": "v4-ai-script-01",
+      "file": "src/assets/screens/v4-ai-script-01.webp",
+      "caption": "提需求：生成脚本文件",
+      "alt": "向 AI 提出「创建一个 Python 文件 current_time.py」的需求",
+      "category": "ai",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#让 AI 创建脚本文件",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011154224914.png"
+    },
+    {
+      "slug": "v4-ai-script-02",
+      "file": "src/assets/screens/v4-ai-script-02.webp",
+      "caption": "AI 生成脚本内容",
+      "alt": "AI 生成脚本内容的过程",
+      "category": "ai",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#让 AI 创建脚本文件",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011154312436.png"
+    },
+    {
+      "slug": "v4-ai-script-03",
+      "file": "src/assets/screens/v4-ai-script-03.webp",
+      "caption": "脚本写入桌面",
+      "alt": "生成的脚本文件已写入桌面",
+      "category": "ai",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#让 AI 创建脚本文件",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011154538888.png"
+    },
+    {
+      "slug": "v4-ai-fstab-01",
+      "file": "src/assets/screens/v4-ai-fstab-01.webp",
+      "caption": "让它读 /etc/fstab",
+      "alt": "让 AI 把 /etc/fstab 的挂载项解释成中文并给出优化建议",
+      "category": "ai",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#让 AI 分析系统配置",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011161041418.png"
+    },
+    {
+      "slug": "v4-ai-fstab-02",
+      "file": "src/assets/screens/v4-ai-fstab-02.webp",
+      "caption": "挂载项解释与建议",
+      "alt": "AI 返回的挂载项中文解释与优化建议",
+      "category": "ai",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/",
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#让 AI 分析系统配置",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011161301508.png"
+    },
+    {
+      "slug": "v4-ai-recon-01",
+      "file": "src/assets/screens/v4-ai-recon-01.webp",
+      "caption": "信息收集与扫描 01",
+      "alt": "让 AI 生成 naabu → nmap → nuclei 的信息收集与漏洞扫描命令",
+      "category": "ai",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/",
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#让 AI 自动化信息收集漏洞扫描",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011200119575.png"
+    },
+    {
+      "slug": "v4-ai-recon-02",
+      "file": "src/assets/screens/v4-ai-recon-02.webp",
+      "caption": "信息收集与扫描 02",
+      "alt": "AI 生成命令并执行的过程（第 2 张）",
+      "category": "ai",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#让 AI 自动化信息收集漏洞扫描",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011200133709.png"
+    },
+    {
+      "slug": "v4-ai-recon-03",
+      "file": "src/assets/screens/v4-ai-recon-03.webp",
+      "caption": "信息收集与扫描 03",
+      "alt": "AI 生成命令并执行的过程（第 3 张）",
+      "category": "ai",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#让 AI 自动化信息收集漏洞扫描",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011200137777.png"
+    },
+    {
+      "slug": "v4-ai-recon-04",
+      "file": "src/assets/screens/v4-ai-recon-04.webp",
+      "caption": "信息收集与扫描 04",
+      "alt": "扫描结果输出（第 4 张）",
+      "category": "ai",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#让 AI 自动化信息收集漏洞扫描",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011200244461.png"
+    },
+    {
+      "slug": "v4-ai-disk-01",
+      "file": "src/assets/screens/v4-ai-disk-01.webp",
+      "caption": "清理系统垃圾 01",
+      "alt": "让 AI 清理临时目录并显示占用最大的目录",
+      "category": "ai",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#让 AI 操作系统",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011201051831.png"
+    },
+    {
+      "slug": "v4-ai-disk-02",
+      "file": "src/assets/screens/v4-ai-disk-02.webp",
+      "caption": "清理系统垃圾 02",
+      "alt": "清理结果与前 10 个占用最大的目录",
+      "category": "ai",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#让 AI 操作系统",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011201237023.png"
+    },
+    {
+      "slug": "v4-ai-intrusion-01",
+      "file": "src/assets/screens/v4-ai-intrusion-01.webp",
+      "caption": "入侵排查 01",
+      "alt": "让 AI 检查系统是否被入侵",
+      "category": "ai",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#让 AI 自动化系统入侵分析",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011201738856.png"
+    },
+    {
+      "slug": "v4-ai-intrusion-02",
+      "file": "src/assets/screens/v4-ai-intrusion-02.webp",
+      "caption": "入侵排查 02",
+      "alt": "AI 给出的入侵排查结论",
+      "category": "ai",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#让 AI 自动化系统入侵分析",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011201906579.png"
+    },
+    {
+      "slug": "v4-tools-overview-01",
+      "file": "src/assets/screens/v4-tools-overview-01.webp",
+      "caption": "集成工具箱 01",
+      "alt": "V4 集成工具箱界面",
+      "category": "tools",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/",
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#工具更新概览",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251010140534567.png"
+    },
+    {
+      "slug": "v4-tools-overview-02",
+      "file": "src/assets/screens/v4-tools-overview-02.webp",
+      "caption": "集成工具箱 02",
+      "alt": "V4 集成工具箱界面（第二张）",
+      "category": "tools",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#工具更新概览",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251009111659196.png"
+    },
+    {
+      "slug": "v4-toolbox-import-01",
+      "file": "src/assets/screens/v4-toolbox-import-01.webp",
+      "caption": "工具包导入 01",
+      "alt": "系统版导入工具包步骤 1",
+      "category": "system",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/",
+        "/docs/toolbox/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#系统版工具包导入",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011094658115.png"
+    },
+    {
+      "slug": "v4-toolbox-import-02",
+      "file": "src/assets/screens/v4-toolbox-import-02.webp",
+      "caption": "工具包导入 02",
+      "alt": "系统版导入工具包步骤 2",
+      "category": "system",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/",
+        "/docs/toolbox/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#系统版工具包导入",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011095523199.png"
+    },
+    {
+      "slug": "v4-toolbox-import-03",
+      "file": "src/assets/screens/v4-toolbox-import-03.webp",
+      "caption": "工具包导入 03",
+      "alt": "系统版导入工具包步骤 3",
+      "category": "system",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/",
+        "/docs/toolbox/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#系统版工具包导入",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011095758410.png"
+    },
+    {
+      "slug": "v4-toolbox-import-04",
+      "file": "src/assets/screens/v4-toolbox-import-04.webp",
+      "caption": "工具包导入 04",
+      "alt": "系统版工具包导入完成后的工具箱",
+      "category": "system",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/",
+        "/docs/toolbox/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#系统版工具包导入",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251011103333573.png"
+    },
+    {
+      "slug": "v4-shortcut-all-desktops",
+      "file": "src/assets/screens/v4-shortcut-all-desktops.webp",
+      "caption": "展开全部桌面",
+      "alt": "按下 Ctrl+Alt+Shift+Tab 展开全部桌面",
+      "category": "system",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#使用技巧",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251010134157945.png"
+    },
+    {
+      "slug": "v4-shortcut-all-windows",
+      "file": "src/assets/screens/v4-shortcut-all-windows.webp",
+      "caption": "展开全部窗口",
+      "alt": "按下 Ctrl+Alt+E 展开全部窗口",
+      "category": "system",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#使用技巧",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251010135819005.png"
+    },
+    {
+      "slug": "v4-shortcut-tiling",
+      "file": "src/assets/screens/v4-shortcut-tiling.webp",
+      "caption": "编辑磁吸区域",
+      "alt": "按下 Win+T 编辑桌面磁吸区域",
+      "category": "system",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#使用技巧",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251010140457216.png"
+    },
+    {
+      "slug": "plasma5-topbar",
+      "file": "src/assets/screens/plasma5-topbar.webp",
+      "caption": "Plasma 5 顶栏",
+      "alt": "Plasma 5 顶栏样式",
+      "category": "brand",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/",
+        "/products/kde/"
+      ],
+      "thin": true,
+      "sourceRef": "readme#V4版本更新说明",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20250929101815834.png"
+    },
+    {
+      "slug": "plasma6-topbar",
+      "file": "src/assets/screens/plasma6-topbar.webp",
+      "caption": "Plasma 6 顶栏",
+      "alt": "Plasma 6 顶栏样式",
+      "category": "brand",
+      "product": "kde",
+      "version": "v4",
+      "usedOn": [
+        "/",
+        "/products/kde/"
+      ],
+      "thin": true,
+      "sourceRef": "readme#V4版本更新说明",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20251009160752454.png"
+    },
+    {
+      "slug": "v3-login",
+      "file": "src/assets/screens/v3-login.webp",
+      "caption": "登录界面",
+      "alt": "V3 版登录界面（SDDM）",
+      "category": "system",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#魔改后的效果",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20241221104853212.png"
+    },
+    {
+      "slug": "v3-boot",
+      "file": "src/assets/screens/v3-boot.webp",
+      "caption": "启动加载界面",
+      "alt": "V3 版启动加载界面",
+      "category": "system",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#魔改后的效果",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20241221102840049.png"
+    },
+    {
+      "slug": "v3-systeminfo-01",
+      "file": "src/assets/screens/v3-systeminfo-01.webp",
+      "caption": "系统版本信息",
+      "alt": "V3 版系统版本信息",
+      "category": "desktop",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#魔改后的效果",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20241221104004880.png"
+    },
+    {
+      "slug": "v3-systeminfo-02",
+      "file": "src/assets/screens/v3-systeminfo-02.webp",
+      "caption": "系统版本信息 02",
+      "alt": "V3 版系统版本信息（第二张，README 未标注具体内容）",
+      "category": "desktop",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#魔改后的效果",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20241221204226545.png"
+    },
+    {
+      "slug": "v3-menu",
+      "file": "src/assets/screens/v3-menu.webp",
+      "caption": "开始菜单",
+      "alt": "V3 版开始菜单",
+      "category": "desktop",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#魔改后的效果",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20241221204328781.png"
+    },
+    {
+      "slug": "v3-terminal",
+      "file": "src/assets/screens/v3-terminal.webp",
+      "caption": "终端界面",
+      "alt": "V3 版终端界面",
+      "category": "terminal",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#魔改后的效果",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20241221102940385.png"
+    },
+    {
+      "slug": "v3-vim",
+      "file": "src/assets/screens/v3-vim.webp",
+      "caption": "vim 配置效果",
+      "alt": "V3 版 vim 编辑器配置效果",
+      "category": "terminal",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#魔改后的效果",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20241221104458458.png"
+    },
+    {
+      "slug": "v3-arsenal-01",
+      "file": "src/assets/screens/v3-arsenal-01.webp",
+      "caption": "Kali arsenal",
+      "alt": "Kali 内置 arsenal 工具集",
+      "category": "tools",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#魔改后的效果",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20241221101915723.png"
+    },
+    {
+      "slug": "v3-arsenal-02",
+      "file": "src/assets/screens/v3-arsenal-02.webp",
+      "caption": "Kali arsenal 02",
+      "alt": "Kali 内置 arsenal 工具集（第二张，README 未标注具体内容）",
+      "category": "tools",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#魔改后的效果",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20241221105537752.png"
+    },
+    {
+      "slug": "v3-toolbox-open-01",
+      "file": "src/assets/screens/v3-toolbox-open-01.webp",
+      "caption": "工具集成打开方式 01",
+      "alt": "V3 版工具集成的打开方式",
+      "category": "tools",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#工具集成",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20241221210056849.png"
+    },
+    {
+      "slug": "v3-toolbox-open-02",
+      "file": "src/assets/screens/v3-toolbox-open-02.webp",
+      "caption": "工具集成打开方式 02",
+      "alt": "V3 版工具集成的打开方式（第二张）",
+      "category": "tools",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#工具集成",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20241221210136656.png"
+    },
+    {
+      "slug": "v3-storage-import",
+      "file": "src/assets/screens/v3-storage-import.webp",
+      "caption": "全部工具导入",
+      "alt": "V3 版全部工具导入：storage.7z 放到用户目录解压",
+      "category": "system",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/docs/toolbox/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#系统版",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20240507143402828.png"
+    },
+    {
+      "slug": "v3-single-import",
+      "file": "src/assets/screens/v3-single-import.webp",
+      "caption": "单个工具导入",
+      "alt": "V3 版单个工具导入示例",
+      "category": "system",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/docs/toolbox/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#系统版",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20240507141805023.png"
+    },
+    {
+      "slug": "v3-single-import-02",
+      "file": "src/assets/screens/v3-single-import-02.webp",
+      "caption": "导入结果",
+      "alt": "V3 版单个工具导入结果",
+      "category": "system",
+      "product": "kde",
+      "version": "v3",
+      "usedOn": [
+        "/docs/toolbox/"
+      ],
+      "thin": false,
+      "sourceRef": "readme#系统版",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20241221205159135.png"
+    },
+    {
+      "slug": "i3wm-desktop",
+      "file": "src/assets/screens/i3wm-desktop.webp",
+      "caption": "i3wm 整体效果",
+      "alt": "i3wm 桌面整体效果：polybar 顶栏 + ranger 三栏 + sqlmap + neofetch",
+      "category": "desktop",
+      "product": "i3",
+      "version": "i3",
+      "usedOn": [
+        "/",
+        "/products/i3wm/"
+      ],
+      "thin": false,
+      "sourceRef": "readme-i3#i3配置效果",
+      "sourceUrl": "https://raw.githubusercontent.com/CuriousLearnerDev/kali-linux-i3wm-beautify/main/img/image-20230913124407421.png"
+    },
+    {
+      "slug": "i3wm-ranger",
+      "file": "src/assets/screens/i3wm-ranger.webp",
+      "caption": "ranger 文件管理",
+      "alt": "ranger 终端文件管理器与 fzf 联动效果",
+      "category": "terminal",
+      "product": "i3",
+      "version": "i3",
+      "usedOn": [
+        "/products/i3wm/"
+      ],
+      "thin": false,
+      "sourceRef": "readme-i3#文件管理",
+      "sourceUrl": "https://raw.githubusercontent.com/CuriousLearnerDev/kali-linux-i3wm-beautify/main/img/image-20230913122125622.png"
+    },
+    {
+      "slug": "i3wm-fzf",
+      "file": "src/assets/screens/i3wm-fzf.webp",
+      "caption": "fzf 历史搜索",
+      "alt": "fzf 的 zsh 历史命令模糊搜索效果",
+      "category": "terminal",
+      "product": "i3",
+      "version": "i3",
+      "usedOn": [
+        "/products/i3wm/"
+      ],
+      "thin": false,
+      "sourceRef": "readme-i3#终端搜索",
+      "sourceUrl": "https://raw.githubusercontent.com/CuriousLearnerDev/kali-linux-i3wm-beautify/main/img/image-20230913123021747.png"
+    },
+    {
+      "slug": "i3wm-utools",
+      "file": "src/assets/screens/i3wm-utools.webp",
+      "caption": "uTools 启动器",
+      "alt": "uTools 启动器在 i3wm 中的效果",
+      "category": "tools",
+      "product": "i3",
+      "version": "i3",
+      "usedOn": [
+        "/products/i3wm/"
+      ],
+      "thin": false,
+      "sourceRef": "readme-i3#启动器",
+      "sourceUrl": "https://raw.githubusercontent.com/CuriousLearnerDev/kali-linux-i3wm-beautify/main/img/image-20230913124836653.png"
+    },
+    {
+      "slug": "i3wm-kde-compare",
+      "file": "src/assets/screens/i3wm-kde-compare.webp",
+      "caption": "KDE 效果对照",
+      "alt": "同一台机器上的 KDE 配置效果，用于与 i3wm 对比",
+      "category": "desktop",
+      "product": "i3",
+      "version": "i3",
+      "usedOn": [
+        "/products/i3wm/"
+      ],
+      "thin": false,
+      "sourceRef": "readme-i3#kde配置效果",
+      "sourceUrl": "https://raw.githubusercontent.com/CuriousLearnerDev/kali-linux-i3wm-beautify/main/img/image-20221217195637486.png"
+    },
+    {
+      "slug": "i3wm-polybar",
+      "file": "src/assets/screens/i3wm-polybar.webp",
+      "caption": "polybar 状态栏",
+      "alt": "polybar 状态栏长条效果",
+      "category": "brand",
+      "product": "i3",
+      "version": "i3",
+      "usedOn": [
+        "/products/i3wm/"
+      ],
+      "thin": true,
+      "sourceRef": "readme-i3#polybar",
+      "sourceUrl": "https://raw.githubusercontent.com/CuriousLearnerDev/kali-linux-i3wm-beautify/main/img/image-20230913120205884.png"
+    },
+    {
+      "slug": "i3wm-toolbox-01",
+      "file": "src/assets/screens/i3wm-toolbox-01.webp",
+      "caption": "集成工具箱 01",
+      "alt": "i3wm 版集成工具箱",
+      "category": "tools",
+      "product": "i3",
+      "version": "i3",
+      "usedOn": [
+        "/products/i3wm/"
+      ],
+      "thin": false,
+      "sourceRef": "readme-i3#工具",
+      "sourceUrl": "https://raw.githubusercontent.com/CuriousLearnerDev/kali-linux-i3wm-beautify/main/img/image-20230913143854072.png"
+    },
+    {
+      "slug": "i3wm-toolbox-02",
+      "file": "src/assets/screens/i3wm-toolbox-02.webp",
+      "caption": "集成工具箱 02",
+      "alt": "i3wm 版集成工具箱（第二张）",
+      "category": "tools",
+      "product": "i3",
+      "version": "i3",
+      "usedOn": [
+        "/products/i3wm/"
+      ],
+      "thin": false,
+      "sourceRef": "readme-i3#工具",
+      "sourceUrl": "https://raw.githubusercontent.com/CuriousLearnerDev/kali-linux-i3wm-beautify/main/img/image-20230913143945783.png"
+    },
+    {
+      "slug": "v5-topbar",
+      "file": "src/assets/screens/v5-topbar.webp",
+      "caption": "V5 顶栏",
+      "alt": "V5 顶栏样式（Plasma 6.7）",
+      "category": "brand",
+      "product": "kde",
+      "version": "v5",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": true,
+      "sourceRef": "kali_2026#界面示例（按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20261116163429525.png"
+    },
+    {
+      "slug": "v5-ui-01",
+      "file": "src/assets/screens/v5-ui-01.webp",
+      "caption": "终端 neofetch",
+      "alt": "V5 终端中的 neofetch 系统信息（内核 7.1.5 / Plasma 6.7.4）",
+      "category": "desktop",
+      "product": "kde",
+      "version": "v5",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "kali_2026#界面示例（按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20261116174238692.png"
+    },
+    {
+      "slug": "v5-ui-02",
+      "file": "src/assets/screens/v5-ui-02.webp",
+      "caption": "多窗口总览",
+      "alt": "展开全部窗口后的多窗口总览",
+      "category": "desktop",
+      "product": "kde",
+      "version": "v5",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "kali_2026#界面示例（按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20261116174612694.png"
+    },
+    {
+      "slug": "v5-ui-03",
+      "file": "src/assets/screens/v5-ui-03.webp",
+      "caption": "应用菜单",
+      "alt": "应用菜单展开，左侧为渗透工具分类",
+      "category": "desktop",
+      "product": "kde",
+      "version": "v5",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "kali_2026#界面示例（按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20261116172717270.png"
+    },
+    {
+      "slug": "v5-ui-04",
+      "file": "src/assets/screens/v5-ui-04.webp",
+      "caption": "vim 编辑 .zshrc",
+      "alt": "在 vim 中编辑 zsh 配置（插件列表）",
+      "category": "desktop",
+      "product": "kde",
+      "version": "v5",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "kali_2026#界面示例（按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20261116171058185.png"
+    },
+    {
+      "slug": "v5-ui-05",
+      "file": "src/assets/screens/v5-ui-05.webp",
+      "caption": "Panel colorizer 设置",
+      "alt": "面板着色插件（Panel colorizer）的设置界面",
+      "category": "desktop",
+      "product": "kde",
+      "version": "v5",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "kali_2026#界面示例（按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20261116172936751.png"
+    },
+    {
+      "slug": "v5-ui-06",
+      "file": "src/assets/screens/v5-ui-06.webp",
+      "caption": "vim 编辑 ranger 配置",
+      "alt": "在 vim 中编辑 ranger 配置",
+      "category": "desktop",
+      "product": "kde",
+      "version": "v5",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "kali_2026#界面示例（按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20261116171138954.png"
+    },
+    {
+      "slug": "v5-ui-07",
+      "file": "src/assets/screens/v5-ui-07.webp",
+      "caption": "终端历史搜索",
+      "alt": "终端命令历史的模糊搜索（fzf）",
+      "category": "desktop",
+      "product": "kde",
+      "version": "v5",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "kali_2026#界面示例（按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20261116172137069.png"
+    },
+    {
+      "slug": "v5-ui-08",
+      "file": "src/assets/screens/v5-ui-08.webp",
+      "caption": "多桌面视图",
+      "alt": "四个虚拟桌面的总览",
+      "category": "desktop",
+      "product": "kde",
+      "version": "v5",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "kali_2026#界面示例（按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20261116172051430.png"
+    },
+    {
+      "slug": "v5-ui-09",
+      "file": "src/assets/screens/v5-ui-09.webp",
+      "caption": "ranger 文件管理",
+      "alt": "ranger 文件管理器浏览 /run/udev",
+      "category": "desktop",
+      "product": "kde",
+      "version": "v5",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "kali_2026#界面示例（按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20261116172624235.png"
+    },
+    {
+      "slug": "v5-ui-10",
+      "file": "src/assets/screens/v5-ui-10.webp",
+      "caption": "面板设置",
+      "alt": "桌面面板设置界面",
+      "category": "desktop",
+      "product": "kde",
+      "version": "v5",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "kali_2026#界面示例（按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20261116171909827.png"
+    },
+    {
+      "slug": "v5-ui-11",
+      "file": "src/assets/screens/v5-ui-11.webp",
+      "caption": "星火应用商店",
+      "alt": "星火应用商店（社区版）界面",
+      "category": "desktop",
+      "product": "kde",
+      "version": "v5",
+      "usedOn": [
+        "/products/kde/"
+      ],
+      "thin": false,
+      "sourceRef": "kali_2026#界面示例（按实际画面命名）",
+      "sourceUrl": "https://zssnp-1301606049.cos.ap-nanjing.myqcloud.com/img/image-20261116172828256.png"
+    }
+  ]
+}
