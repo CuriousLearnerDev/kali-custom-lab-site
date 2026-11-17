@@ -1,0 +1,21 @@
+---
+interface Props {
+  title?: string;
+  class?: string;
+  screenClass?: string;
+}
+
+const { title, class: className = "", screenClass = "" } = Astro.props;
+---
+
+<div class:list={["window-frame", className]}>
+  <div class="window-frame__bar">
+    <span class="window-frame__dots" aria-hidden="true">
+      <i></i><i></i><i></i>
+    </span>
+    {title && <span class="window-frame__title">{title}</span>}
+  </div>
+  <div class:list={["window-frame__screen", screenClass]}>
+    <slot />
+  </div>
+</div>

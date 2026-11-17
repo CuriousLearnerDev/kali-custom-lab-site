@@ -1,0 +1,333 @@
+{
+  "fetchedAt": "2026-11-17T05:50:37.138Z",
+  "owner": "CuriousLearnerDev",
+  "author": {
+    "login": "CuriousLearnerDev",
+    "name": "W啥都学",
+    "bio": "我遇见的每个人都必定在某一方面胜于我。正因如此我向每个人学习",
+    "blog": "",
+    "followers": 299,
+    "following": 5,
+    "public_repos": 17,
+    "created_at": "2020-09-28T04:08:25Z",
+    "html_url": "https://github.com/CuriousLearnerDev",
+    "avatar_url": "https://avatars.githubusercontent.com/u/72000175?v=4"
+  },
+  "repos": {
+    "kde": {
+      "full_name": "CuriousLearnerDev/kali-linux-kde-beautify",
+      "description": "主要对kali-linux系统进行美化，对kali的kde环境进行美化，包含系统美化、终端等美化、系统优化、新工具增加等",
+      "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify",
+      "homepage": null,
+      "stars": 160,
+      "forks": 7,
+      "open_issues": 14,
+      "watchers": 4,
+      "created_at": "2024-08-19T02:28:42Z",
+      "pushed_at": "2026-11-17T05:50:08Z",
+      "default_branch": "main",
+      "license": "MIT",
+      "topics": [],
+      "releases": [
+        {
+          "tag": "4.0",
+          "name": "4.0",
+          "published_at": "2025-10-13T01:01:02Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/releases/tag/4.0",
+          "draft": false,
+          "prerelease": false,
+          "body_length": 0,
+          "assets": []
+        },
+        {
+          "tag": "3.0",
+          "name": "3.0",
+          "published_at": "2024-12-22T07:29:30Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/releases/tag/3.0",
+          "draft": false,
+          "prerelease": false,
+          "body_length": 0,
+          "assets": []
+        }
+      ],
+      "releases_ok": true,
+      "commits": [
+        {
+          "sha": "f180076",
+          "message": "Add MIT License",
+          "date": "2026-11-17T05:50:08Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/commit/f180076051f5236a19d6230bfce63e678772eb20"
+        },
+        {
+          "sha": "47ecb32",
+          "message": "Update README.md",
+          "date": "2025-10-13T01:00:21Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/commit/47ecb322b9ba1747d63d27ccb918c34c2c13e8ff"
+        },
+        {
+          "sha": "36f2877",
+          "message": "Update README.md",
+          "date": "2024-12-22T07:30:11Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/commit/36f2877c1a154bb23d16046425c74257d4c7cd07"
+        },
+        {
+          "sha": "ddd0c3e",
+          "message": "Update README.md",
+          "date": "2024-12-22T07:29:00Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/commit/ddd0c3e2c224a6a4a944186e883348b5af572a20"
+        },
+        {
+          "sha": "3dbc232",
+          "message": "Update README.md",
+          "date": "2024-12-22T07:27:56Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/commit/3dbc2327ad6ca903102418f69f49eec42ac838da"
+        }
+      ],
+      "commits_ok": true,
+      "issues": [
+        {
+          "number": 15,
+          "title": "完整版 kali linux 2025.3解压出错",
+          "state": "closed",
+          "comments": 0,
+          "created_at": "2025-10-23T10:58:49Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/15",
+          "is_pull_request": false
+        },
+        {
+          "number": 14,
+          "title": "能否做成iso文件",
+          "state": "open",
+          "comments": 1,
+          "created_at": "2025-10-19T09:53:55Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/14",
+          "is_pull_request": false
+        },
+        {
+          "number": 13,
+          "title": "工具",
+          "state": "open",
+          "comments": 0,
+          "created_at": "2025-05-16T12:04:05Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/13",
+          "is_pull_request": false
+        },
+        {
+          "number": 12,
+          "title": "系统用户名能改吗",
+          "state": "open",
+          "comments": 2,
+          "created_at": "2025-04-27T01:20:27Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/12",
+          "is_pull_request": false
+        },
+        {
+          "number": 11,
+          "title": "好看是好看，就是字太小了，有什么办法调大点不",
+          "state": "open",
+          "comments": 1,
+          "created_at": "2025-04-23T11:25:14Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/11",
+          "is_pull_request": false
+        },
+        {
+          "number": 10,
+          "title": "终端命令行很卡,请问可能是什么原因，怎么解决。项目很方便，但就这一个问题比较影响体验。",
+          "state": "open",
+          "comments": 7,
+          "created_at": "2025-01-27T02:22:08Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/10",
+          "is_pull_request": false
+        },
+        {
+          "number": 9,
+          "title": "用airodump-ng测试wifi的时候，卡在这里很久了，这是怎么回事",
+          "state": "open",
+          "comments": 0,
+          "created_at": "2025-01-01T14:46:40Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/9",
+          "is_pull_request": false
+        },
+        {
+          "number": 8,
+          "title": "强烈建议更换百度网盘，加一个iso版本",
+          "state": "open",
+          "comments": 0,
+          "created_at": "2024-12-06T00:52:19Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/8",
+          "is_pull_request": false
+        },
+        {
+          "number": 7,
+          "title": "如何安装到物理机",
+          "state": "open",
+          "comments": 0,
+          "created_at": "2024-12-04T14:40:03Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/7",
+          "is_pull_request": false
+        },
+        {
+          "number": 6,
+          "title": "在哪下载 下载工具",
+          "state": "open",
+          "comments": 0,
+          "created_at": "2024-11-28T01:36:29Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/6",
+          "is_pull_request": false
+        },
+        {
+          "number": 5,
+          "title": "可以使用arm架构的吗",
+          "state": "open",
+          "comments": 1,
+          "created_at": "2024-11-27T00:43:39Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/5",
+          "is_pull_request": false
+        },
+        {
+          "number": 4,
+          "title": "强烈建议更换网盘链接",
+          "state": "open",
+          "comments": 2,
+          "created_at": "2024-11-04T00:55:09Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/4",
+          "is_pull_request": false
+        },
+        {
+          "number": 3,
+          "title": "更新后重启进入系统黑屏",
+          "state": "open",
+          "comments": 16,
+          "created_at": "2024-10-11T15:50:03Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/3",
+          "is_pull_request": false
+        },
+        {
+          "number": 2,
+          "title": "能不能不用夸克网盘",
+          "state": "open",
+          "comments": 1,
+          "created_at": "2024-08-31T21:54:46Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/2",
+          "is_pull_request": false
+        },
+        {
+          "number": 1,
+          "title": "不能直接打开吗",
+          "state": "open",
+          "comments": 4,
+          "created_at": "2024-08-27T02:43:10Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues/1",
+          "is_pull_request": false
+        }
+      ],
+      "issues_ok": true
+    },
+    "i3": {
+      "full_name": "CuriousLearnerDev/kali-linux-i3wm-beautify",
+      "description": "主要对kali-linux系统i3wm环境进行美化，包含系统美化、终端等美化、系统优化、新工具增加等",
+      "html_url": "https://github.com/CuriousLearnerDev/kali-linux-i3wm-beautify",
+      "homepage": null,
+      "stars": 6,
+      "forks": 0,
+      "open_issues": 1,
+      "watchers": 1,
+      "created_at": "2024-08-21T01:49:59Z",
+      "pushed_at": "2026-11-17T05:50:11Z",
+      "default_branch": "main",
+      "license": "MIT",
+      "topics": [],
+      "releases": [],
+      "releases_ok": true,
+      "commits": [
+        {
+          "sha": "3c443a0",
+          "message": "Add MIT License",
+          "date": "2026-11-17T05:50:11Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-i3wm-beautify/commit/3c443a0fb699e9289694da200edffb00d46b5ddc"
+        },
+        {
+          "sha": "7bf8bde",
+          "message": "2.0",
+          "date": "2024-08-21T02:23:31Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-i3wm-beautify/commit/7bf8bdee9748c19b89569f8760dd9aa10ff11a7d"
+        },
+        {
+          "sha": "3dd688c",
+          "message": "1.0",
+          "date": "2024-08-21T01:59:36Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-i3wm-beautify/commit/3dd688cb2e6a9fbec1df1fbb4d7a1ed365931aa4"
+        }
+      ],
+      "commits_ok": true,
+      "issues": [
+        {
+          "number": 1,
+          "title": "1",
+          "state": "open",
+          "comments": 0,
+          "created_at": "2024-09-03T10:28:54Z",
+          "html_url": "https://github.com/CuriousLearnerDev/kali-linux-i3wm-beautify/issues/1",
+          "is_pull_request": false
+        }
+      ],
+      "issues_ok": true
+    }
+  },
+  "otherRepos": [
+    {
+      "name": "Online_tools",
+      "description": null,
+      "html_url": "https://github.com/CuriousLearnerDev/Online_tools",
+      "stars": 1172,
+      "forks": 116,
+      "language": null,
+      "pushed_at": "2026-10-24T12:13:22Z"
+    },
+    {
+      "name": "TrafficEye",
+      "description": " This tool is designed to help penetration testers and network administrators identify potential security threats, especially those targeting web applications such as SQL injection, XSS, and WebShells. Its modular desig 该工具适用于 HW 蓝队对网络流量的深入分析，帮助安全研究人员、渗透测试人员及网络管理员等专业人士识别潜在的安全威胁，尤其是针对 Web 应用的攻击（如 SQL 注入、XSS、WebShell 等）。其模块化设计使用户能够根据实际需求自由选择并定制各类功能模块",
+      "html_url": "https://github.com/CuriousLearnerDev/TrafficEye",
+      "stars": 666,
+      "forks": 78,
+      "language": null,
+      "pushed_at": "2026-08-04T05:57:45Z"
+    },
+    {
+      "name": "CipherBridge",
+      "description": "面向APP/Web 加解密逆向分析、渗透测试人员的可视化解密框架",
+      "html_url": "https://github.com/CuriousLearnerDev/CipherBridge",
+      "stars": 471,
+      "forks": 80,
+      "language": "Python",
+      "pushed_at": "2026-11-15T09:53:47Z"
+    },
+    {
+      "name": "Argus-Sliver",
+      "description": "Argus-Sliver 是首个基于 Web 端的 Sliver C2 二次开发平台。它利用 Vue3 + FastAPI + sliver-py 构建，旨在为安全研究人员提供一个直觉化、全功能的图形化渗透指挥中心",
+      "html_url": "https://github.com/CuriousLearnerDev/Argus-Sliver",
+      "stars": 79,
+      "forks": 17,
+      "language": "Vue",
+      "pushed_at": "2026-01-20T06:44:17Z"
+    },
+    {
+      "name": "Full-Scanner",
+      "description": "Full-Scanner是一个多功能扫描工具，支持被动/主动信息收集，漏洞扫描工具联动，可导入POC和EXP",
+      "html_url": "https://github.com/CuriousLearnerDev/Full-Scanner",
+      "stars": 70,
+      "forks": 16,
+      "language": "Python",
+      "pushed_at": "2023-04-19T09:00:04Z"
+    },
+    {
+      "name": "Online_Tools-AI",
+      "description": "一个面向 Web 版桌面 安全测试的 AI Agent 平台，集成侦察、分析、规划、工具调用与反馈学习，实现自主完成渗透测试工作流An AI Agent platform for web-based security testing, integrating reconnaissance, analysis, planning, tool orchestration, and feedback-driven learning to autonomously execute penetration testing workflows.",
+      "html_url": "https://github.com/CuriousLearnerDev/Online_Tools-AI",
+      "stars": 58,
+      "forks": 9,
+      "language": "Python",
+      "pushed_at": "2026-07-20T02:42:55Z"
+    }
+  ]
+}

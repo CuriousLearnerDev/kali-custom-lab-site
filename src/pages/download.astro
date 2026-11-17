@@ -1,0 +1,158 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/ui/Section.astro";
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import Badge from "@/components/ui/Badge.astro";
+import Note from "@/components/ui/Note.astro";
+import EditionCard from "@/components/download/EditionCard.astro";
+import { EDITIONS } from "@/data/downloads";
+import { VERSIONS } from "@/data/versions";
+import { SITE } from "@/data/site";
+import { stat, getReleases, SNAPSHOT_DATE } from "@/lib/github";
+
+const groups = VERSIONS.map((version) => ({
+  version,
+  editions: EDITIONS.filter((e) => e.versionId === version.id),
+}));
+
+const releases = getReleases("kde");
+
+const steps = [
+  { title: "下载压缩包", body: "从本页列出的网盘下载。V4 只有夸克网盘一个渠道；V5 的地址作者尚未公布。" },
+  { title: "用 7-Zip / PeaZip 解压", body: "系统自带解压工具对超大文件支持较差，容易报「文件损坏」。" },
+  { title: "导入虚拟机", body: "用 VMware Workstation 17+ 打开解压出的 .vmx 文件。版本不匹配就升级 VMware。" },
+  { title: "登录并改密码", body: "默认账号 zss / 密码 ss，所有人都在 README 里看得到，登录后立刻 passwd 改掉。" },
+];
+---
+
+<BaseLayout
+  title="下载中心"
+  description="Kali 魔改版下载：V5（Kali 2026.3 / Plasma 6.7）、V4、V3、V2 与 i3wm 版，完整版与系统版的网盘链接和提取码。"
+  ogImage="/og/download.png"
+>
+  <section class="relative overflow-hidden pb-10 pt-12 sm:pt-16">
+    <div class="shell relative">
+      <p class="label-caps">Download</p>
+      <h1 class="mt-3 text-[clamp(30px,4vw,44px)] font-display leading-[1.15] text-ink">
+        下载中心
+      </h1>
+      <p class="lead mt-3 max-w-[60ch]">
+        所有版本、两种规格、全部网盘渠道与提取码都在这页。镜像托管在网盘，
+        不在 GitHub Release。
+      </p>
+
+      <!-- 锚点导航：纯链接，无 JS -->
+      <nav class="mt-7 flex flex-wrap gap-2" aria-label="版本快捷跳转">
+        {
+          groups.map((group) => (
+            <a
+              href={`#${group.version.id}`}
+              class="rounded-full border border-line bg-surface/70 px-3 py-1.5 font-mono text-[12px] text-ink-2 transition-colors hover:border-breeze-300 hover:text-breeze-700"
+            >
+              {group.version.label}
+              {group.version.current && <span class="ml-1.5 text-breeze-600">推荐</span>}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="mt-7 grid gap-4 md:grid-cols-2">
+        <Note variant="warn" title="作者没有公布校验值">
+          <p>
+            两个仓库都没有提供 SHA256 或其他校验值，所以本站也不显示 —— 不会编一个假的给你。
+            如果下载后不确定文件是否完整，只能靠解压是否报错、以及能否正常启动来判断。
+          </p>
+        </Note>
+        <Note variant="info" title="只从本页列出的地址下载">
+          <p>
+            本页只收录作者在 README 里公开的网盘链接。除此之外的「整合包」
+            「加速下载」都不在本站背书范围内。链接失效请到 GitHub 提 issue。
+          </p>
+        </Note>
+      </div>
+    </div>
+  </section>
+
+  {
+    groups.map((group, gi) => (
+      <Section id={group.version.id} tone={gi % 2 === 1 ? "deep" : "none"}>
+        <SectionHeading
+          index={String(gi + 1).padStart(2, "0")}
+          kicker={group.version.current ? "当前版本" : "历史版本"}
+          title={`${group.version.label} · ${group.version.baseSystem}`}
+          lead={`${group.version.desktop} · 固件 ${group.version.firmware} · 默认账号 ${group.version.defaultUser} / ${group.version.defaultPassword}`}
+        />
+
+        <div class="mb-5 flex flex-wrap items-center gap-2">
+          {group.version.current && group.editions.some((e) => e.status === "available") && (
+            <Badge tone="accent">推荐安装</Badge>
+          )}
+          {group.version.current && group.editions.every((e) => e.status === "pending") && (
+            <Badge tone="neutral">下载地址待公布</Badge>
+          )}
+          {group.version.releaseTag ? (
+            <Badge tone="neutral">GitHub Release {group.version.releaseTag}</Badge>
+          ) : (
+            <Badge tone="neutral">无 GitHub Release</Badge>
+          )}
+          <span class="font-mono text-[11.5px] text-faint">
+            {group.version.releaseDate ?? group.version.releasedLabel}
+          </span>
+        </div>
+
+        <ul class="grid gap-5 md:grid-cols-2">
+          {group.editions.map((edition) => (
+            <li class="min-w-0">
+              <EditionCard
+                edition={edition}
+                recommended={edition.id === "v5-full"}
+              />
+            </li>
+          ))}
+        </ul>
+
+        {group.version.releaseTag === "4.0" && (
+          <p class="mt-4 font-mono text-[11.5px] text-faint">
+            对应 GitHub Release 4.0（{releases[0]?.published_at?.slice(0, 10) ?? "2025-10-13"}），
+            该 Release 未填写说明、也没有上传附件。
+          </p>
+        )}
+      </Section>
+    ))
+  }
+
+  <Section>
+    <SectionHeading
+      index="06"
+      kicker="流程"
+      title="拿到文件之后怎么用"
+      lead="四步。第三、四步是最容易出问题的地方。"
+    />
+    <ol class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        steps.map((step, i) => (
+          <li class="glass-flat p-5">
+            <span class="grid h-7 w-7 place-items-center rounded-full bg-breeze-50 font-mono text-[12px] font-medium text-breeze-700">
+              {i + 1}
+            </span>
+            <h3 class="mt-3 font-display text-[15px] font-medium text-ink">{step.title}</h3>
+            <p class="mt-1.5 text-[13px] leading-relaxed text-muted">{step.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="/docs/install-vmware/" class="text-[13.5px] text-breeze-700 underline decoration-breeze-300 underline-offset-2">
+        详细的虚拟机导入说明
+      </a>
+      <a href="/docs/faq/" class="text-[13.5px] text-breeze-700 underline decoration-breeze-300 underline-offset-2">
+        常见问题
+      </a>
+    </div>
+
+    <p class="mt-8 font-mono text-[11.5px] text-faint">
+      数据核对时间 {SNAPSHOT_DATE} · {stat(releases.length)} 个 GitHub Release · {SITE.author.handle}
+    </p>
+  </Section>
+</BaseLayout>

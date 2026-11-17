@@ -1,0 +1,16 @@
+# 独立 project name，避免与 1.0 站点的容器冲突
+name: kali-custom-lab-2
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        # 正式域名确定后改这里（也影响 canonical / OG 绝对地址）
+        SITE_URL: ${SITE_URL:-https://kali-lab.example.com}
+    image: kali-custom-lab-2:latest
+    container_name: kali-lab-2-web
+    restart: unless-stopped
+    # 1.0 站点占用 80，2.0 先用 8080 并行验证，确认无误后再切
+    ports:
+      - "${WEB_PORT:-8080}:80"

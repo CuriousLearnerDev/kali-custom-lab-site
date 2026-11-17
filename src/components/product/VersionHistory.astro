@@ -1,0 +1,63 @@
+---
+import Badge from "@/components/ui/Badge.astro";
+import { VERSIONS } from "@/data/versions";
+
+const versions = VERSIONS.filter((v) => v.id !== "i3");
+---
+
+<ol class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+  {
+    versions.map((v) => (
+      <li class="min-w-0">
+        <article
+          class:list={[
+            "glass-flat flex h-full flex-col p-5",
+            v.current && "border-breeze-300/80 ring-1 ring-breeze-300/25",
+          ]}
+        >
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="font-display text-[19px] font-semibold text-ink">
+              {v.label}
+            </h3>
+            {v.current ? (
+              <Badge tone="accent">当前版本</Badge>
+            ) : (
+              <span class="font-mono text-[11.5px] text-faint">历史版本</span>
+            )}
+          </div>
+
+          <dl class="mt-4 space-y-1.5 border-t border-line pt-3 font-mono text-[12px]">
+            <div class="flex justify-between gap-3">
+              <dt class="text-faint">基础系统</dt>
+              <dd class="text-ink-2">{v.baseSystem}</dd>
+            </div>
+            <div class="flex justify-between gap-3">
+              <dt class="text-faint">桌面</dt>
+              <dd class="text-ink-2">{v.desktop}</dd>
+            </div>
+            <div class="flex justify-between gap-3">
+              <dt class="text-faint">发布时间</dt>
+              <dd class="text-ink-2">{v.releaseDate ?? v.releasedLabel}</dd>
+            </div>
+          </dl>
+
+          <p class="mt-4 text-[13.5px] leading-relaxed text-muted">{v.summary}</p>
+
+          <ul class="mt-4 space-y-1.5 text-[12.5px] leading-relaxed text-muted">
+            {v.changes.slice(0, 3).map((change) => (
+              <li class="flex gap-2">
+                <span class="text-breeze-500" aria-hidden="true">·</span>
+                <span>{change}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p class="mt-auto pt-4 font-mono text-[11px] leading-relaxed text-faint">
+            {v.releaseTag ? `GitHub Release ${v.releaseTag}` : "无 GitHub Release"}
+            {v.releaseTag ? " · 无说明、无附件" : ""}
+          </p>
+        </article>
+      </li>
+    ))
+  }
+</ol>

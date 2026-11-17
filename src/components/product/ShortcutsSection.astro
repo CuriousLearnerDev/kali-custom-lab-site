@@ -1,0 +1,51 @@
+---
+import { KDE_SHORTCUTS, I3_BASIC_SHORTCUTS, I3_CUSTOM_SHORTCUTS, I3_MOD_NOTE } from "@/data/shortcuts";
+
+interface Props {
+  product: "kde" | "i3";
+}
+const { product } = Astro.props;
+---
+
+{
+  product === "kde" ? (
+    <div class="grid gap-2.5 sm:grid-cols-2">
+      {KDE_SHORTCUTS.map((item) => (
+        <div class="glass-flat flex items-center justify-between gap-4 px-4 py-3">
+          <kbd class="kbd">{item.keys}</kbd>
+          <span class="text-[13.5px] text-ink-2">{item.action}</span>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div class="space-y-8">
+      <p class="max-w-[62ch] text-[14px] leading-relaxed text-muted">
+        {I3_MOD_NOTE}
+      </p>
+
+      <div>
+        <h3 class="label-caps mb-3">基础 i3 快捷键</h3>
+        <div class="grid gap-2.5 sm:grid-cols-2">
+          {I3_BASIC_SHORTCUTS.map((item) => (
+            <div class="glass-flat flex items-center justify-between gap-4 px-4 py-3">
+              <kbd class="kbd">{item.keys}</kbd>
+              <span class="text-right text-[13.5px] text-ink-2">{item.action}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h3 class="label-caps mb-3">作者自加的快捷键</h3>
+        <div class="grid gap-2.5 sm:grid-cols-2">
+          {I3_CUSTOM_SHORTCUTS.map((item) => (
+            <div class="glass-flat flex items-center justify-between gap-4 px-4 py-3">
+              <kbd class="kbd">{item.keys}</kbd>
+              <span class="text-right text-[13.5px] text-ink-2">{item.action}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}

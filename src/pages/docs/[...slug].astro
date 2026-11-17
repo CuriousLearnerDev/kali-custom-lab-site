@@ -1,0 +1,32 @@
+---
+import DocLayout from "@/layouts/DocLayout.astro";
+import Note from "@/components/ui/Note.astro";
+import ShortcutsSection from "@/components/product/ShortcutsSection.astro";
+import FaqList from "@/components/docs/FaqList.astro";
+import { render } from "astro:content";
+import { getAllDocs, getAdjacent, getDocGroups } from "@/lib/docs";
+
+export async function getStaticPaths() {
+  const docs = await getAllDocs();
+  return docs.map((doc) => ({ params: { slug: doc.id }, props: { doc } }));
+}
+
+const { doc } = Astro.props;
+const { Content, headings } = await render(doc);
+const groups = await getDocGroups();
+const { prev, next } = await getAdjacent(doc.id);
+---
+
+<DocLayout
+  title={doc.data.title}
+  description={doc.data.description}
+  slug={doc.id}
+  headings={headings}
+  groups={groups}
+  prev={prev}
+  next={next}
+  sources={doc.data.sources}
+  relatedIssues={doc.data.relatedIssues}
+>
+  <Content components={{ Note, ShortcutsSection, FaqList }} />
+</DocLayout>

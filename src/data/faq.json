@@ -1,0 +1,117 @@
+{
+  "FAQ": [
+    {
+      "id": "upgrade-black-screen",
+      "question": "执行 apt 升级后重启黑屏，只剩鼠标，怎么办？",
+      "answer": "这是反馈最多的问题（issue #3，16 条讨论）。作者的处理意见是：不要整体更新系统。原话是「如果要用什么工具就更新什么工具就好，系统别更新，避免出现系统崩溃的问题」。原因是美化所依赖的库和新版程序可能冲突。已经出现黑屏的，可以尝试进 TTY 或用快照回滚。",
+      "detailHref": "/docs/troubleshooting/",
+      "relatedIssues": [
+        3
+      ],
+      "severity": "blocker",
+      "featured": true
+    },
+    {
+      "id": "no-iso",
+      "question": "为什么没有 ISO？能直接装到物理机吗？",
+      "answer": "作者发布的是 VMware 虚拟机文件（vmdk），没有提供 ISO。issue #7、#8、#14 都在问物理机安装，作者目前没有给出 ISO 版本。想在物理机上使用，比较稳妥的做法是用官方 Kali ISO 安装，再参照本项目的美化思路自行配置。",
+      "detailHref": "/docs/install-vmware/",
+      "relatedIssues": [
+        7,
+        8,
+        14
+      ],
+      "severity": "common",
+      "featured": true
+    },
+    {
+      "id": "netdisk",
+      "question": "夸克网盘容量不够，能不能换网盘？",
+      "answer": "夸克给新用户的初始容量约 10GB，而 V4 完整版压缩包就有 11.7GB，确实存不下；大文件在网页端也可能无法直接下载。V3 开始作者同时提供了百度网盘链接，V4 只有夸克。issue #2、#4、#8 都在提这件事。",
+      "relatedIssues": [
+        2,
+        4,
+        8
+      ],
+      "severity": "common",
+      "featured": true
+    },
+    {
+      "id": "font-size",
+      "question": "字太小了，怎么调大？",
+      "answer": "在系统设置里调整字体大小即可（作者回复：「字体大小在设置里面啊」）。如果是整个界面都偏小，改显示缩放比例效果更明显。",
+      "relatedIssues": [
+        11
+      ],
+      "severity": "common",
+      "featured": true
+    },
+    {
+      "id": "arm",
+      "question": "能在 ARM 设备上跑吗？",
+      "answer": "不能。作者在 issue #5 里明确回复：「arm 的不行，这个是 amd 的」。当前镜像只支持 x86-64（amd64）架构。",
+      "relatedIssues": [
+        5
+      ],
+      "severity": "info"
+    },
+    {
+      "id": "terminal-lag",
+      "question": "终端输入很卡、按键会重复，是什么原因？",
+      "answer": "issue #10 讨论较久（7 条）。作者先问了两件事：宿主是不是固态硬盘、是输入卡还是挪动窗口卡。可以先给虚拟机分配更多内存、开启 3D 加速，并把虚拟机放到 SSD 上再试。",
+      "detailHref": "/docs/troubleshooting/",
+      "relatedIssues": [
+        10
+      ],
+      "severity": "common"
+    },
+    {
+      "id": "vmdk-corrupt",
+      "question": "解压时提示文件损坏 / vmdk 解压报错？",
+      "answer": "issue #15 反馈的是 kali_zss-s024.vmdk 解压报错。先用 7-Zip 或 PeaZip（macOS 可用 Keka）重新解压，系统自带的解压工具对大文件支持较差；再核对压缩包大小是否与页面标注一致。仍失败的话建议重新下载。",
+      "detailHref": "/docs/install-vmware/",
+      "relatedIssues": [
+        15
+      ],
+      "severity": "common"
+    },
+    {
+      "id": "vmware-version",
+      "question": "VMware 打开时提示虚拟机版本不匹配？",
+      "answer": "issue #1 就是这个报错。建议升级到 VMware Workstation 17 或更高版本。不过该 issue 下也有用户反馈升级到 17 之后仍报错，所以不保证一定能解决。",
+      "detailHref": "/docs/install-vmware/",
+      "relatedIssues": [
+        1
+      ],
+      "severity": "common"
+    },
+    {
+      "id": "username",
+      "question": "能把默认用户名 zss 改掉吗？",
+      "answer": "作者回复是「不好改的」。系统里不少配置和路径写死了 /home/zss，改名容易连带出问题。建议新建一个用户来用，或者直接用官方 Kali 自行配置。",
+      "relatedIssues": [
+        12
+      ],
+      "severity": "info"
+    },
+    {
+      "id": "download-tools",
+      "question": "镜像里为什么没有渗透工具？",
+      "answer": "V5 起镜像不再预装第三方渗透工具，只提供桌面环境与配置。需要什么工具请从 Kali 官方源安装（`sudo apt install 工具名`），或到各工具官网获取。",
+      "detailHref": "/download/",
+      "relatedIssues": [
+        6
+      ],
+      "severity": "info"
+    },
+    {
+      "id": "wifi-monitor",
+      "question": "用 airodump-ng 测 WiFi 时卡住不动？",
+      "answer": "issue #9 提到了这个现象，但正文没有提供复现细节，作者也没有回复，所以无法给出确切原因。可以确定的是：虚拟机的内置无线网卡无法直接进入监听模式，需要外置 USB 无线网卡并在虚拟机设置里直通给 Kali。",
+      "relatedIssues": [
+        9
+      ],
+      "severity": "info"
+    }
+  ]
+}

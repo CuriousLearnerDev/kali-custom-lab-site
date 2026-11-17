@@ -1,0 +1,116 @@
+---
+import { SITE } from "@/data/site";
+import SiteHeader from "@/components/layout/SiteHeader.astro";
+import SiteFooter from "@/components/layout/SiteFooter.astro";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** 页面级 OG 图，默认用站点图 */
+  ogImage?: string;
+  /** 结构化数据，按页传入 */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = SITE.description,
+  ogImage = "/og/home.png",
+  jsonLd,
+  noindex = false,
+} = Astro.props;
+
+const pageTitle = title.includes(SITE.name) ? title : `${title} · ${SITE.name}`;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).href;
+const ogUrl = new URL(ogImage, Astro.site ?? SITE.url).href;
+const ldJson = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+---
+
+<!doctype html>
+<html lang={SITE.lang} data-theme="dark" data-theme-choice="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+
+    <meta name="theme-color" content="#14171c" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="64x64" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogUrl} />
+
+    <link
+      rel="preload"
+      href="/fonts/SpaceGrotesk-Subset.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    {
+      ldJson.map((item) => (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(item)}
+        />
+      ))
+    }
+    <script is:inline>
+      // 首屏渲染前决定主题：localStorage 优先，否则跟随系统
+      (function () {
+        var root = document.documentElement;
+        var choice = "dark";
+        try {
+          var saved = localStorage.getItem("theme-choice");
+          if (saved === "light" || saved === "dark" || saved === "auto") choice = saved;
+        } catch (e) {}
+        var dark =
+          choice === "dark" ||
+          (choice === "auto" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+        root.dataset.themeChoice = choice;
+        root.dataset.theme = dark ? "dark" : "light";
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", dark ? "#14171c" : "#f4f6fb");
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="page-bg" aria-hidden="true">
+      <span class="page-bg__blob page-bg__blob--blue"></span>
+      <span class="page-bg__blob page-bg__blob--violet"></span>
+      <span class="page-bg__blob page-bg__blob--cyan"></span>
+      <span class="page-bg__blob page-bg__blob--warm"></span>
+    </div>
+
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-control focus:bg-surface focus:px-4 focus:py-2 focus:text-ink focus:shadow-2"
+    >
+      跳到主要内容
+    </a>
+
+    <SiteHeader />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <SiteFooter />
+  </body>
+</html>

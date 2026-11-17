@@ -1,0 +1,203 @@
+{
+  "EDITIONS": [
+    {
+      "id": "v5-full",
+      "versionId": "v5",
+      "name": "完整版",
+      "archiveSize": "待发布",
+      "extractedSize": "待发布",
+      "summary": "全部工具已集成，打开即可使用。",
+      "notes": [
+        "作者尚未放出 V5 完整版，体积与下载地址都待公布。"
+      ],
+      "status": "pending",
+      "channels": []
+    },
+    {
+      "id": "v5-system",
+      "versionId": "v5",
+      "name": "系统版",
+      "archiveSize": "6.20 GB",
+      "extractedSize": "约 25.00 GB",
+      "summary": "体积更小的精简版本，保留完整桌面与配置。",
+      "notes": [
+        "体积已公布，但作者暂未放出下载地址。",
+        "V5 起不再预装第三方渗透工具，需要什么请从官方源自行安装。"
+      ],
+      "status": "pending",
+      "channels": []
+    },
+    {
+      "id": "v4-full",
+      "versionId": "v4",
+      "name": "完整版",
+      "archiveSize": "11.7 GB",
+      "extractedSize": "约 28.0 GB",
+      "summary": "全部工具已集成，打开即可使用。",
+      "notes": [
+        "压缩包较大，建议用 7-Zip 或 PeaZip 解压。"
+      ],
+      "status": "available",
+      "channels": [
+        {
+          "provider": "quark",
+          "url": "https://pan.quark.cn/s/c29ef5b66fa0",
+          "code": "3g7w",
+          "status": "ok",
+          "lastVerified": "2026-11-16",
+          "source": "readme#v4-完整版"
+        }
+      ]
+    },
+    {
+      "id": "v4-system",
+      "versionId": "v4",
+      "name": "系统版",
+      "archiveSize": "6.61 GB",
+      "extractedSize": "约 22.00 GB",
+      "summary": "只装了工具框架，下载小；需要自己导入工具包后才能使用工具。",
+      "notes": [
+        "默认系统版工具箱里的工具无法打开，必须先导入工具包（约 70 个工具）。",
+        "导入方式见文档「系统版导入工具包」。"
+      ],
+      "status": "available",
+      "channels": [
+        {
+          "provider": "quark",
+          "url": "https://pan.quark.cn/s/751fc4c933f1",
+          "code": "hpgv",
+          "status": "ok",
+          "lastVerified": "2026-11-16",
+          "source": "readme#v4-系统版"
+        }
+      ]
+    },
+    {
+      "id": "v3-full",
+      "versionId": "v3",
+      "name": "完整版",
+      "archiveSize": "25.9 GB",
+      "extractedSize": "约 43.0 GB",
+      "summary": "全部工具已集成，打开即可使用。",
+      "notes": [
+        "体积很大，请预留至少 45 GB 磁盘空间。"
+      ],
+      "status": "available",
+      "channels": [
+        {
+          "provider": "quark",
+          "url": "https://pan.quark.cn/s/4de8cd895bf1",
+          "code": "Avx9",
+          "status": "ok",
+          "lastVerified": "2026-11-16",
+          "source": "readme#v3-完整版"
+        },
+        {
+          "provider": "baidu",
+          "url": "https://pan.baidu.com/s/1xV1vWl8Ly_yB-wK9ilvF8Q",
+          "code": "hrsu",
+          "status": "ok",
+          "lastVerified": "2026-11-16",
+          "source": "readme#v3-完整版"
+        }
+      ]
+    },
+    {
+      "id": "v3-system",
+      "versionId": "v3",
+      "name": "系统版",
+      "archiveSize": "8.92 GB",
+      "extractedSize": "约 24.00 GB",
+      "summary": "只装了工具框架，需要导入 storage.7z 工具包。",
+      "notes": [
+        "工具包文件名 storage.7z，约 3GB，放到用户目录 /home/zss 下解压即可。"
+      ],
+      "status": "available",
+      "channels": [
+        {
+          "provider": "quark",
+          "url": "https://pan.quark.cn/s/411e421aae45",
+          "code": "7btv",
+          "status": "ok",
+          "lastVerified": "2026-11-16",
+          "source": "readme#v3-系统版"
+        },
+        {
+          "provider": "baidu",
+          "url": "https://pan.baidu.com/s/1bv4DiEU62A8m6MUdBnaXpg",
+          "code": "db8j",
+          "status": "ok",
+          "lastVerified": "2026-11-16",
+          "source": "readme#v3-系统版"
+        }
+      ]
+    },
+    {
+      "id": "v2-full",
+      "versionId": "v2",
+      "name": "完整版",
+      "archiveSize": "18.8 GB",
+      "extractedSize": "约 36.00 GB",
+      "summary": "全部工具已集成。",
+      "notes": [
+        "历史版本，新装建议直接用 V5。"
+      ],
+      "status": "available",
+      "channels": [
+        {
+          "provider": "quark",
+          "url": "https://pan.quark.cn/s/3ba90a47b705",
+          "code": "drcU",
+          "status": "ok",
+          "lastVerified": "2026-11-16",
+          "source": "readme#v2-完整版"
+        }
+      ]
+    },
+    {
+      "id": "v2-system",
+      "versionId": "v2",
+      "name": "系统版",
+      "archiveSize": "4.91 GB",
+      "extractedSize": "约 20.00 GB",
+      "summary": "精简版，需要自己导入工具。",
+      "notes": [
+        "历史版本，新装建议直接用 V5。"
+      ],
+      "status": "available",
+      "channels": [
+        {
+          "provider": "quark",
+          "url": "https://pan.quark.cn/s/020a81c976f1",
+          "code": "Sdzr",
+          "status": "ok",
+          "lastVerified": "2026-11-16",
+          "source": "readme#v2-系统版"
+        }
+      ]
+    },
+    {
+      "id": "i3-full",
+      "versionId": "i3",
+      "name": "i3wm 版",
+      "archiveSize": "11 GB 以上",
+      "extractedSize": "27 GB 以上",
+      "summary": "VMware 虚拟机文件（vmdk），解压后直接导入虚拟机。",
+      "notes": [
+        "基于 Kali 2023.3，后续继续维护。",
+        "提示文件损坏时，请使用 7z 或 rar 解压工具。"
+      ],
+      "status": "available",
+      "channels": [
+        {
+          "provider": "tianyi",
+          "url": "https://cloud.189.cn/t/uI7fYbYbuQRj",
+          "code": "u67q",
+          "status": "ok",
+          "lastVerified": "2026-11-16",
+          "source": "readme-i3#下载地址"
+        }
+      ]
+    }
+  ]
+}

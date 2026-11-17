@@ -1,0 +1,283 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/ui/Section.astro";
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import Button from "@/components/ui/Button.astro";
+import Badge from "@/components/ui/Badge.astro";
+import Screenshot from "@/components/media/Screenshot.astro";
+import GalleryGrid from "@/components/media/GalleryGrid.astro";
+import Lightbox from "@/components/media/Lightbox.astro";
+import SpecTable from "@/components/product/SpecTable.astro";
+import VersionHistory from "@/components/product/VersionHistory.astro";
+import GeminiSection from "@/components/product/GeminiSection.astro";
+import AppearanceSection from "@/components/product/AppearanceSection.astro";
+import ShortcutsSection from "@/components/product/ShortcutsSection.astro";
+import EditionCard from "@/components/download/EditionCard.astro";
+import { shot, SHOTS } from "@/data/shots";
+import { PRODUCTS } from "@/data/products";
+import { CURRENT_VERSION } from "@/data/versions";
+import { editionsFor } from "@/data/downloads";
+import { BILIBILI_TUTORIAL } from "@/data/tools";
+import { FAQ } from "@/data/faq";
+import { getRepo, stat, SNAPSHOT_DATE } from "@/lib/github";
+import { SITE } from "@/data/site";
+
+const product = PRODUCTS.kde;
+const repo = getRepo("kde");
+const hero = shot("v5-ui-01");
+const editions = editionsFor("v4");
+
+const currentShots = SHOTS.filter(
+  (s) => s.product === "kde" && (s.version === "v5" || s.version === "v4") && !s.thin,
+);
+const knownIssues = FAQ.filter((f) => f.severity !== "info").slice(0, 6);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: `${SITE.name} — ${product.name} ${product.versionLabel}`,
+  applicationCategory: "OperatingSystem",
+  operatingSystem: `${CURRENT_VERSION.baseSystem} (amd64)`,
+  softwareVersion: product.versionLabel,
+  description: product.tagline,
+  url: `${SITE.url}/products/kde/`,
+  downloadUrl: `${SITE.url}/download/`,
+};
+---
+
+<BaseLayout
+  title={`${product.name} ${product.versionLabel} · ${CURRENT_VERSION.desktop}`}
+  description={`${product.tagline}。基于 ${CURRENT_VERSION.baseSystem}，内核 ${CURRENT_VERSION.kernel}，集成 Gemini CLI AI 终端。`}
+  jsonLd={jsonLd}
+  ogImage="/og/kde.png"
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden pb-14 pt-10 sm:pt-14">
+
+    <div class="shell relative">
+      <nav class="font-mono text-[11.5px] text-faint" aria-label="面包屑">
+        <a href="/" class="hover:text-breeze-700">首页</a>
+        <span class="mx-1.5">/</span>
+        <span class="text-ink-2">KDE 版</span>
+      </nav>
+
+      <div class="mt-6 grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+        <div>
+          <div class="flex flex-wrap items-center gap-2">
+            <Badge tone="active">持续维护</Badge>
+            <Badge tone="neutral">{CURRENT_VERSION.desktop}</Badge>
+            <Badge tone="neutral">{CURRENT_VERSION.baseSystem}</Badge>
+          </div>
+
+          <h1 class="mt-4 text-[clamp(30px,4vw,46px)] font-display leading-[1.15] text-ink">
+            KDE 魔改版 <span class="underline-accent">{product.versionLabel}</span>
+          </h1>
+
+          <p class="lead mt-4 max-w-[48ch]">
+            {product.tagline}。去掉冗余插件与启动项，集成 Gemini CLI，
+            并把桌面、输入法与终端一次性配好。
+          </p>
+
+          <div class="mt-7 flex flex-wrap gap-3">
+            <Button href="#download" size="lg">下载 {product.versionLabel}</Button>
+            <Button href="#gallery" variant="secondary" size="lg">看界面截图</Button>
+          </div>
+
+          <dl class="mt-7 flex flex-wrap gap-2 font-mono text-[11.5px] text-muted">
+            <div class="rounded-full border border-line bg-surface/60 px-2.5 py-1">
+              内核 {CURRENT_VERSION.kernel}
+            </div>
+            <div class="rounded-full border border-line bg-surface/60 px-2.5 py-1">
+              固件 {CURRENT_VERSION.firmware}
+            </div>
+            <div class="rounded-full border border-line bg-surface/60 px-2.5 py-1">
+              {stat(repo.forks)} fork · {repo.open_issues} issues
+            </div>
+          </dl>
+        </div>
+
+        <Screenshot
+          shot={hero}
+          sizes="(max-width: 1024px) 92vw, 560px"
+          widths={[720, 1100, 1600]}
+          loading="eager"
+          avif
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 规格 -->
+  <Section id="specs" tone="deep" tight>
+    <SectionHeading
+      index="01"
+      kicker="规格速览"
+      title="装机前先看这张表"
+      lead="表中所有数字都来自仓库 README，未做任何推测。"
+    />
+    <SpecTable
+      product="kde"
+      archive="11.7 GB（完整版）/ 6.61 GB（系统版）"
+      extracted="约 28.0 GB / 约 22.00 GB"
+    />
+  </Section>
+
+  <!-- 三大变化 -->
+  <Section>
+    <SectionHeading
+      index="02"
+      kicker="V5 的变化"
+      title="三件事：升桌面、换输入法、再减一轮"
+      lead="这一版没有加新功能，改动集中在底层体验：桌面版本、输入法方案，以及继续做减法。"
+    />
+    <ul class="grid gap-5 md:grid-cols-3">
+      {
+        [
+          {
+            title: "Plasma 6.7",
+            body: "跟随 Kali 2026.3 升级到 KDE Plasma 6.7.4（Qt 6.11.2），内核跟到 7.1.5。2026.3 还针对 Intel 核显与多全屏窗口做了性能与功耗优化。",
+          },
+          {
+            title: "输入法重构",
+            body: "从搜狗（fcitx4）迁移到 fcitx5 + 雾凇拼音。这一改动的直接收益是：Qt6 程序下终于能正常输入中文了。",
+          },
+          {
+            title: "继续做减法",
+            body: "去掉冗余插件与启动项；「面板模糊」类插件被移除 —— 实测在虚拟机软件渲染下它持续占用约 60% 单核。",
+          },
+        ].map((item, i) => (
+          <li class="glass-flat p-5">
+            <p class="font-mono text-[11px] text-breeze-600">0{i + 1}</p>
+            <h3 class="mt-1.5 font-display text-[17px] font-semibold text-ink">{item.title}</h3>
+            <p class="mt-2 text-[13.5px] leading-relaxed text-muted">{item.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+
+  <!-- AI 专题 -->
+  <Section tone="deep" id="ai">
+    <SectionHeading
+      index="03"
+      kicker="AI 终端"
+      title="五个可以直接照抄的场景"
+      lead="这是 V4 引入的 Gemini CLI 演示，命令是作者输入的原话、截图是当时的实录；V5 的说明里没有单独提及它。"
+    />
+    <GeminiSection />
+  </Section>
+
+  <!-- 版本史 -->
+  <Section id="versions">
+    <SectionHeading
+      index="04"
+      kicker="版本史"
+      title="从 V2 到 V5"
+      lead="GitHub 上的 release 只有 3.0 和 4.0，且都没有说明和附件；V5 还没有对应的 Release，版本信息以作者发布说明为准。"
+    />
+    <VersionHistory />
+  </Section>
+
+  <!-- 外观 -->
+  <Section tone="deep" id="appearance">
+    <SectionHeading
+      index="05"
+      kicker="外观与预装"
+      title="皮肤、图标、终端都配好了"
+      lead="这一部分是作者在 README「外观定制」与「系统已经安装」里列出的原始清单。"
+    />
+    <AppearanceSection />
+  </Section>
+
+  <!-- 快捷键 -->
+  <Section tone="deep" id="shortcuts">
+    <SectionHeading
+      index="06"
+      kicker="快捷键"
+      title="六个最常用的键位"
+      lead="作者建议先看视频教程，再看这张表。"
+    >
+      <Button slot="action" href={BILIBILI_TUTORIAL} variant="secondary" size="sm" external>
+        B 站教程
+      </Button>
+    </SectionHeading>
+    <ShortcutsSection product="kde" />
+
+    <div class="mt-8 grid gap-5 sm:grid-cols-3">
+      {
+        ["v4-shortcut-all-desktops", "v4-shortcut-all-windows", "v4-shortcut-tiling"].map((slug) => (
+          <Screenshot shot={shot(slug)} sizes="(max-width: 640px) 92vw, 32vw" widths={[480, 900, 1400]} />
+        ))
+      }
+    </div>
+  </Section>
+
+  <!-- 画廊 -->
+  <Section id="gallery">
+    <SectionHeading
+      index="07"
+      kicker="界面画廊"
+      title="全部是真实截图"
+      lead={`共 ${currentShots.length} 张，V5 与 V4 的实拍都在这里。取自作者的发布说明与仓库公开素材。`}
+    />
+    <GalleryGrid items={currentShots} />
+  </Section>
+
+  <!-- 下载 -->
+  <Section tone="deep" id="download">
+    <SectionHeading
+      index="08"
+      kicker="下载"
+      title="完整版，还是系统版"
+      lead="V5 起不再预装第三方工具，两个版本的差别只在体积与预置内容。"
+    />
+    <ul class="grid gap-5 md:grid-cols-2">
+      {
+        editions.map((edition) => (
+          <li class="min-w-0">
+            <EditionCard edition={edition} recommended={edition.id === "v5-full"} />
+          </li>
+        ))
+      }
+    </ul>
+
+  </Section>
+
+  <!-- 已知问题 -->
+  <Section id="issues">
+    <SectionHeading
+      index="09"
+      kicker="已知问题"
+      title="装完之后大概率会遇到的"
+      lead="全部来自仓库里真实的 issue，点右侧可看原文。"
+    >
+      <Button slot="action" href="/docs/faq/" variant="secondary" size="sm">
+        全部常见问题
+      </Button>
+    </SectionHeading>
+
+    <ul class="space-y-2.5">
+      {
+        knownIssues.map((issue) => (
+          <li>
+            <a
+              href={`/docs/faq/#${issue.id}`}
+              class="glass-flat glass-hover flex items-center justify-between gap-4 px-5 py-4"
+            >
+              <span class="text-[14px] text-ink">{issue.question}</span>
+              <span class="shrink-0 font-mono text-[11.5px] text-faint">
+                issue #{issue.relatedIssues[0]}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="mt-6 font-mono text-[11.5px] text-faint">
+      GitHub 数据快照于 {SNAPSHOT_DATE} · 仓库以 MIT 协议开源
+    </p>
+  </Section>
+
+  <Lightbox />
+</BaseLayout>

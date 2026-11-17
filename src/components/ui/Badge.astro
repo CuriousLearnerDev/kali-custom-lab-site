@@ -1,0 +1,19 @@
+---
+interface Props {
+  tone?: "active" | "archived" | "neutral" | "accent";
+  class?: string;
+}
+
+const { tone = "neutral", class: className = "" } = Astro.props;
+
+const tones = {
+  active: "border-ok-fg/25 bg-ok-bg text-ok-fg",
+  archived: "border-warn-line bg-warn-bg text-warn-fg",
+  accent: "border-breeze-300 bg-breeze-50 text-breeze-700",
+  neutral: "border-line bg-surface/70 text-ink-2",
+} as const;
+---
+
+<span class:list={["tag-pill", tones[tone], className]}>
+  <slot />
+</span>

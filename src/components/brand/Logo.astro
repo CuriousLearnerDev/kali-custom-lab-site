@@ -1,0 +1,32 @@
+---
+/**
+ * 站点标记：用作者的卡通头像（V5 登录界面里那个）作为品牌符号。
+ * 图片已去白底，透明 PNG，深浅色背景都能用。
+ */
+interface Props {
+  size?: number;
+  withWordmark?: boolean;
+  class?: string;
+}
+const { size = 38, withWordmark = true, class: className = "" } = Astro.props;
+---
+
+<span class:list={["inline-flex items-center gap-2", className]}>
+  <img
+    src="/brand/logo.png"
+    width={size}
+    height={size}
+    alt=""
+    aria-hidden="true"
+    decoding="async"
+    class="shrink-0 select-none"
+    style={`width:${size}px;height:${size}px`}
+  />
+  {
+    withWordmark && (
+      <span class="font-display text-[15px] font-semibold tracking-tight text-ink">
+        Kali Custom Lab
+      </span>
+    )
+  }
+</span>

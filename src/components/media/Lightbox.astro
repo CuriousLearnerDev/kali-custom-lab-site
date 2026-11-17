@@ -1,0 +1,55 @@
+---
+/**
+ * 全站共用的灯箱。每个页面只放一次。
+ * 原生 <dialog> + showModal()：自带焦点陷阱与 Esc 关闭。
+ * 没有 JS 时，Screenshot 里的 <a href> 会直接打开原图。
+ */
+
+const id = "shot-lightbox";
+---
+
+<dialog id={id} class="shot-lightbox" aria-label="查看大图">
+  <div class="shot-lightbox__panel">
+    <button type="button" class="shot-lightbox__close" data-close aria-label="关闭（Esc）">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"></path>
+      </svg>
+    </button>
+    <img data-img alt="" />
+    <p class="shot-lightbox__caption" data-caption></p>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById("shot-lightbox") as HTMLDialogElement | null;
+
+  if (dialog) {
+    const img = dialog.querySelector<HTMLImageElement>("[data-img]")!;
+    const caption = dialog.querySelector<HTMLElement>("[data-caption]")!;
+    const closeBtn = dialog.querySelector<HTMLButtonElement>("[data-close]")!;
+
+    const close = () => {
+      dialog.close();
+    };
+
+    document.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement | null;
+      const link = target?.closest<HTMLAnchorElement>("a[data-shot]");
+      if (!link) return;
+      event.preventDefault();
+      img.src = link.getAttribute("href") ?? "";
+      img.alt = link.dataset.alt ?? "";
+      caption.textContent = link.dataset.caption ?? "";
+      dialog.showModal();
+    });
+
+    closeBtn.addEventListener("click", close);
+    // 点击遮罩区域关闭
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) close();
+    });
+    dialog.addEventListener("close", () => {
+      img.removeAttribute("src");
+    });
+  }
+</script>

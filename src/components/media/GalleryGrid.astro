@@ -1,0 +1,89 @@
+---
+/**
+ * 可筛选的截图网格。筛选是渐进增强：
+ * 没 JS 时所有图都在（只是筛选按钮无效），图本身仍可点开查看。
+ */
+import Screenshot from "./Screenshot.astro";
+import { CATEGORY_LABELS, type Shot } from "@/data/shots";
+
+interface Props {
+  items: Shot[];
+  /** 筛选按钮显示的分类；不传则由 items 派生 */
+  categories?: string[];
+  columns?: 2 | 3;
+  sizes?: string;
+}
+
+const { items, categories, columns = 3, sizes } = Astro.props;
+
+const derived = [...new Set(items.map((i) => i.category))];
+const filters = (categories ?? derived).filter((c) =>
+  derived.includes(c),
+);
+
+const gridCols =
+  columns === 2
+    ? "sm:grid-cols-2"
+    : "sm:grid-cols-2 lg:grid-cols-3";
+---
+
+<div data-gallery>
+  {
+    filters.length > 1 && (
+      <div class="mb-6 flex flex-wrap gap-2" role="group" aria-label="按类型筛选截图">
+        <button
+          type="button"
+          class="filter-chip"
+          data-filter="all"
+          aria-pressed="true"
+        >
+          全部
+          <span class="filter-chip__count">{items.length}</span>
+        </button>
+        {filters.map((cat) => (
+          <button
+            type="button"
+            class="filter-chip"
+            data-filter={cat}
+            aria-pressed="false"
+          >
+            {CATEGORY_LABELS[cat] ?? cat}
+            <span class="filter-chip__count">
+              {items.filter((i) => i.category === cat).length}
+            </span>
+          </button>
+        ))}
+      </div>
+    )
+  }
+
+  <ul class:list={["grid gap-5", gridCols]}>
+    {
+      items.map((item) => (
+        <li data-category={item.category} class="min-w-0">
+          <Screenshot shot={item} sizes={sizes} />
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<script>
+  for (const gallery of document.querySelectorAll<HTMLElement>("[data-gallery]")) {
+    const chips = gallery.querySelectorAll<HTMLButtonElement>(".filter-chip");
+    const figures = gallery.querySelectorAll<HTMLElement>("li[data-category]");
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const filter = chip.dataset.filter ?? "all";
+        chips.forEach((c) =>
+          c.setAttribute("aria-pressed", String(c === chip)),
+        );
+        figures.forEach((fig) => {
+          const show = filter === "all" || fig.dataset.category === filter;
+          fig.hidden = !show;
+        });
+      });
+    });
+  }
+</script>

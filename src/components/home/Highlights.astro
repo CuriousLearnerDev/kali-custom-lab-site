@@ -1,0 +1,109 @@
+---
+import { Image } from "astro:assets";
+import GlassCard from "@/components/ui/GlassCard.astro";
+import { shot } from "@/data/shots";
+
+const plasma5 = shot("plasma5-topbar");
+const plasma6 = shot("plasma6-topbar");
+const plasma67 = shot("v5-topbar");
+
+const items = [
+  {
+    title: "输入法换成 fcitx5",
+    body: "从搜狗（fcitx4）迁移到 fcitx5 + 雾凇拼音，解决了 Qt6 程序下无法输入中文的问题。",
+    icon: "keyboard",
+  },
+  {
+    title: "终端换一套",
+    body: "zsh + zim + powerlevel10k 的组合，启动比原来的 oh-my-zsh 更快。",
+    icon: "terminal",
+  },
+  {
+    title: "再减一轮",
+    body: "继续去掉冗余插件与启动项；「面板模糊」类插件被移除 —— 实测在虚拟机软件渲染下持续占用约 60% 单核。",
+    icon: "feather",
+  },
+] as const;
+
+const bars = [
+  { label: "v3 · Plasma 5", shot: plasma5, widths: [576, 1154] },
+  { label: "v4 · Plasma 6", shot: plasma6, widths: [640, 1280] },
+  { label: "V5 · Plasma 6.7", shot: plasma67, widths: [640, 1280] },
+];
+---
+
+<div class="grid gap-6 lg:grid-cols-[1.15fr_1fr] lg:gap-8">
+  <ul class="grid gap-4 sm:grid-cols-1">
+    {
+      items.map((item, i) => (
+        <li>
+          <GlassCard class="flex h-full gap-4" padding="md">
+            <span class="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-control bg-breeze-50 text-breeze-700">
+              {item.icon === "keyboard" && (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                  <rect x="2.5" y="6" width="19" height="12" rx="2.5" />
+                  <path d="M6.5 10h.01M10 10h.01M13.5 10h.01M17 10h.01M8 14h8" stroke-linecap="round" />
+                </svg>
+              )}
+              {item.icon === "terminal" && (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                  <rect x="2.5" y="4" width="19" height="16" rx="2.5" />
+                  <path d="m7 10 3 2.5L7 15M13 15h4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {item.icon === "feather" && (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                  <path d="M5 12h14" stroke-linecap="round" />
+                  <circle cx="12" cy="12" r="9" />
+                </svg>
+              )}
+            </span>
+            <div>
+              <div class="flex items-baseline gap-2">
+                <span class="font-mono text-[11px] text-faint">0{i + 1}</span>
+                <h3 class="font-display text-[17px] font-semibold text-ink">
+                  {item.title}
+                </h3>
+              </div>
+              <p class="mt-1.5 text-[14px] leading-relaxed text-muted">{item.body}</p>
+            </div>
+          </GlassCard>
+        </li>
+      ))
+    }
+  </ul>
+
+  <!-- 三代顶栏对比：截图本身就是窄条，保持原比例不放大 -->
+  <GlassCard class="flex flex-col justify-center gap-5" padding="lg">
+    <div>
+      <p class="label-caps">顶栏对比</p>
+      <p class="mt-1.5 text-[13.5px] leading-relaxed text-muted">
+        作者在发布说明里放的三张顶栏截图，从上到下依次是 v3、v4、V5。
+      </p>
+    </div>
+
+    <div class="space-y-3.5">
+      {
+        bars.map((bar) => (
+          <div>
+            <p class="mb-1.5 font-mono text-[11px] text-faint">{bar.label}</p>
+            <div class="rounded-[10px] border border-line bg-[#0b1524] p-1.5">
+              <Image
+                src={bar.shot.image}
+                alt={bar.shot.alt}
+                widths={bar.widths}
+                sizes="(max-width: 1024px) 90vw, 380px"
+                loading="lazy"
+                class="w-full rounded-[6px]"
+              />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="font-mono text-[11px] leading-relaxed text-faint">
+      注：三张截图宽度不同（1154 / 1918 / 1912px），此处按容器等比缩放。
+    </p>
+  </GlassCard>
+</div>

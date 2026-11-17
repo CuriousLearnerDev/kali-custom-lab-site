@@ -1,0 +1,25 @@
+---
+interface Props {
+  id?: string;
+  /** 背景分区：默认透明，deep 用稍深的画布色交替 */
+  tone?: "none" | "deep";
+  tight?: boolean;
+  class?: string;
+}
+
+const { id, tone = "none", tight = false, class: className = "" } =
+  Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    tight ? "section-tight" : "section",
+    tone === "deep" && "bg-canvas-deep/50 border-y border-line",
+    className,
+  ]}
+>
+  <div class="shell relative">
+    <slot />
+  </div>
+</section>

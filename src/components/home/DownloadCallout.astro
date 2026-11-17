@@ -1,0 +1,35 @@
+---
+import EditionCard from "@/components/download/EditionCard.astro";
+import { editionsFor } from "@/data/downloads";
+import { CURRENT_VERSION } from "@/data/versions";
+import { getReleases } from "@/lib/github";
+
+const editions = editionsFor(CURRENT_VERSION.id as "v5" | "v4" | "v3" | "v2" | "i3");
+const releases = getReleases("kde");
+const latest = releases[0];
+---
+
+<div class="space-y-5">
+  <ul class="grid gap-5 md:grid-cols-2">
+    {
+      editions.map((edition) => (
+        <li class="min-w-0">
+          <EditionCard edition={edition} recommended={edition.id === `${CURRENT_VERSION.id}-full`} />
+        </li>
+      ))
+    }
+  </ul>
+
+  <div
+    class="flex flex-col gap-2 rounded-control border border-line bg-surface/50 px-4 py-3 text-[12.5px] leading-relaxed text-muted sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p>
+      当前为 <strong class="font-medium text-ink">{CURRENT_VERSION.baseSystem}</strong>
+      · {CURRENT_VERSION.desktop} · 固件 {CURRENT_VERSION.firmware}
+      {latest?.published_at && ` · 发布于 ${latest.published_at.slice(0, 10)}`}
+    </p>
+    <p class="font-mono text-[11.5px] text-faint">
+      无 ISO · 仅支持 amd64 · 作者未提供 SHA256
+    </p>
+  </div>
+</div>

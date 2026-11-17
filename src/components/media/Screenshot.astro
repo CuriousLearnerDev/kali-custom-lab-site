@@ -1,0 +1,66 @@
+---
+/**
+ * 截图统一出口：Breeze 窗口框 + 响应式 <Picture> + 灯箱触发器。
+ *
+ * 无 JS 时 <a href> 直接打开原图，所以图片永远可看。
+ */
+import { Picture } from "astro:assets";
+import type { Shot } from "@/data/shots";
+import WindowFrame from "./WindowFrame.astro";
+
+interface Props {
+  shot: Shot;
+  sizes?: string;
+  widths?: number[];
+  loading?: "lazy" | "eager";
+  /** 是否在下方显示说明文字 */
+  caption?: boolean;
+  /** 是否出 AVIF（只给首屏少数几张，编码慢） */
+  avif?: boolean;
+  class?: string;
+}
+
+const {
+  shot,
+  sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 720px",
+  widths = [640, 1024, 1600],
+  loading = "lazy",
+  caption = false,
+  avif = false,
+  class: className = "",
+} = Astro.props;
+
+const formats = avif ? ["avif", "webp"] : ["webp"];
+---
+
+<figure class:list={[className]}>
+  <a
+    href={shot.image.src}
+    data-shot
+    data-caption={shot.caption}
+    data-alt={shot.alt}
+    class="group/shot block rounded-window transition-transform duration-300 ease-out hover:-translate-y-0.5"
+    aria-label={`放大查看：${shot.alt}`}
+  >
+    <WindowFrame title={shot.caption}>
+      <Picture
+        fallbackFormat="webp"
+        src={shot.image}
+        formats={formats}
+        widths={widths}
+        sizes={sizes}
+        alt={shot.alt}
+        loading={loading}
+        decoding="async"
+        class="w-full"
+      />
+    </WindowFrame>
+  </a>
+  {
+    caption && (
+      <figcaption class="mt-2.5 px-1 text-[13px] leading-relaxed text-muted">
+        {shot.alt}
+      </figcaption>
+    )
+  }
+</figure>

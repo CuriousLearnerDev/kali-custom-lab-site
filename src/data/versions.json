@@ -1,0 +1,114 @@
+{
+  "VERSIONS": [
+    {
+      "id": "v5",
+      "label": "V5",
+      "current": true,
+      "baseSystem": "Kali Linux 2026.3",
+      "desktop": "KDE Plasma 6.7.4 / Qt 6.11.2",
+      "kernel": "7.1.5+kali-amd64",
+      "firmware": "BIOS",
+      "defaultUser": "zss",
+      "defaultPassword": "ss",
+      "releasedLabel": "2026 年",
+      "releaseTag": null,
+      "releaseDate": null,
+      "releaseNote": "GitHub 仓库目前还没有 5.0 的 Release；镜像通过网盘分发。",
+      "summary": "升级到 KDE Plasma 6.7，重构输入法方案（fcitx5 + 雾凇拼音），终端换成 zsh + zim + powerlevel10k。",
+      "changes": [
+        "输入法从搜狗（fcitx4）迁移到 fcitx5 + 雾凇拼音，解决 Qt6 程序下无法输入的问题",
+        "终端环境升级为 zsh + zim + powerlevel10k，启动更快",
+        "去掉冗余插件和启动项，桌面空闲内存占用更低",
+        "移除高开销的「面板模糊」类第三方插件：实测在虚拟机软件渲染下持续占用约 60% 单核",
+        "物理机与虚拟机双场景适配；2026.3 针对 Intel 核显与多全屏窗口做了性能与功耗优化",
+        "不再预装第三方渗透工具：V5 在纯净 Kali 基础上只做界面与配置"
+      ]
+    },
+    {
+      "id": "v4",
+      "label": "V4",
+      "current": false,
+      "baseSystem": "Kali Linux 2025.3",
+      "desktop": "KDE Plasma 6",
+      "kernel": "6.12.38+kali-amd64",
+      "firmware": "BIOS",
+      "defaultUser": "zss",
+      "defaultPassword": "ss",
+      "releasedLabel": "2025 年 10 月",
+      "releaseTag": "4.0",
+      "releaseDate": "2025-10-13",
+      "releaseNote": "GitHub 上该 Release 未填写说明，也没有上传任何附件；镜像通过网盘分发。",
+      "summary": "跟随 Kali 2025.3 升级到 KDE Plasma 6，同时精简插件与启动项，并集成 Gemini CLI。",
+      "changes": [
+        "桌面环境从 Plasma 5 升级到 Plasma 6",
+        "去掉冗余插件和启动项，内存占用更低、界面更清爽",
+        "集成 Gemini CLI，终端可以用自然语言操作",
+        "工具箱更新：BurpSuite_pro 2025.9、yakit 1.4.4、密探 1.2.3、EZ 1.9.2、Naabu 2.3.5、冰蝎 4.1.0、afrog 3.2.2 等",
+        "新增工具：大华漏洞工具、EZ、NacosExploit、JNDIInjection、SpringBoot-Scan"
+      ]
+    },
+    {
+      "id": "v3",
+      "label": "V3",
+      "current": false,
+      "baseSystem": "Kali Linux 2024.4",
+      "desktop": "KDE Plasma 5",
+      "kernel": "随发行版",
+      "firmware": "BIOS",
+      "defaultUser": "zss",
+      "defaultPassword": "ss",
+      "releasedLabel": "2024 年底",
+      "releaseTag": "3.0",
+      "releaseDate": "2024-12-22",
+      "releaseNote": "GitHub 上该 Release 未填写说明，也没有上传任何附件；镜像通过网盘分发。",
+      "summary": "在「知攻善防实验室」发布的一版，重点优化虚拟机里的运行流畅度。",
+      "changes": [
+        "按虚拟机性能重新做美化，去掉消耗资源的效果",
+        "内存 / 硬盘 / 界面 / 网卡四项优化",
+        "自写工具箱集成常见测试工具近 60 个",
+        "终端搜索（fzf，Ctrl+R）与终端文件管理器（ranger）"
+      ]
+    },
+    {
+      "id": "v2",
+      "label": "V2",
+      "current": false,
+      "baseSystem": "Kali Linux 2024.1",
+      "desktop": "KDE Plasma 5",
+      "kernel": "随发行版",
+      "firmware": "BIOS",
+      "defaultUser": "zss",
+      "defaultPassword": "ss",
+      "releasedLabel": "2024 年 5 月",
+      "releaseTag": null,
+      "releaseDate": null,
+      "releaseNote": "该版本没有对应的 GitHub Release，镜像通过网盘分发。",
+      "summary": "第一个被大量使用的版本。",
+      "changes": [
+        "确立 KDE 美化基线：Layan 样式、Reversal 图标、Windows11-Endless 窗口装饰",
+        "整合常用渗透工具与终端美化"
+      ]
+    },
+    {
+      "id": "i3",
+      "label": "i3wm 版",
+      "current": false,
+      "baseSystem": "Kali Linux 2023.3",
+      "desktop": "i3wm",
+      "kernel": "随发行版",
+      "firmware": "BIOS",
+      "defaultUser": "zss",
+      "defaultPassword": "ss",
+      "releasedLabel": "2024 年 8 月（仓库发布）",
+      "releaseTag": null,
+      "releaseDate": null,
+      "releaseNote": "该仓库没有任何 Release；镜像通过天翼云盘分发。",
+      "summary": "超轻量平铺桌面版本，面向愿意自己写配置的进阶用户。",
+      "changes": [
+        "i3wm + polybar 状态栏 + ranger + fzf",
+        "比默认 Xfce4 更低的资源占用",
+        "全键盘工作流，$mod 键映射为 Alt"
+      ]
+    }
+  ]
+}

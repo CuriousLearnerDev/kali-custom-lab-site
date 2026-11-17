@@ -1,0 +1,156 @@
+{
+  "APPEARANCE": [
+    {
+      "label": "Plasma 样式",
+      "value": "Layan"
+    },
+    {
+      "label": "全局主题",
+      "value": "Kali Dark（org.kali.kalidark）"
+    },
+    {
+      "label": "光标",
+      "value": "Layan-white-cursors"
+    },
+    {
+      "label": "窗口装饰",
+      "value": "Windows11-Endless"
+    },
+    {
+      "label": "图标",
+      "value": "Reversal-black"
+    },
+    {
+      "label": "字体",
+      "value": "文泉驿正黑 / FiraCode Nerd"
+    },
+    {
+      "label": "输入法主题",
+      "value": "transparent-green（共 11 套可选）"
+    },
+    {
+      "label": "登录管理器",
+      "value": "SDDM"
+    },
+    {
+      "label": "终端配色",
+      "value": "Sweet / Sweet-Ambar-Blue / Sweet-Mars"
+    }
+  ],
+  "PRESETS": [
+    {
+      "title": "浏览器",
+      "items": [
+        "Chrome",
+        "Firefox ESR",
+        "预置 15 个扩展：FoxyProxy、Wappalyzer、HackBar、Tampermonkey、Vue.js devtools、Page Assist 等"
+      ]
+    },
+    {
+      "title": "输入法",
+      "items": [
+        "fcitx5 + 雾凇拼音（rime-ice）",
+        "支持 Qt6 程序"
+      ]
+    },
+    {
+      "title": "开发工具",
+      "items": [
+        "VSCode",
+        "zsh + zim + powerlevel10k",
+        "fzf"
+      ]
+    },
+    {
+      "title": "编辑器",
+      "items": [
+        "vim",
+        "vim-airline",
+        "vim-startify",
+        "nerdcommenter",
+        "vim-snazzy",
+        "nerdtree",
+        "vim-cursorword"
+      ]
+    },
+    {
+      "title": "字体",
+      "items": [
+        "文泉驿正黑",
+        "FiraCode Nerd Font"
+      ]
+    },
+    {
+      "title": "终端美化",
+      "items": [
+        "powerlevel10k",
+        "neofetch",
+        "lolcat"
+      ]
+    },
+    {
+      "title": "文件管理",
+      "items": [
+        "ranger（含 devicons 图标插件）",
+        "utools"
+      ]
+    },
+    {
+      "title": "图标与窗口",
+      "items": [
+        "Reversal-black 图标",
+        "Windows11-Endless 窗口装饰"
+      ]
+    }
+  ],
+  "AI_SCENARIOS": [
+    {
+      "title": "生成脚本文件",
+      "prompt": "创建一个 Python 文件 current_time.py，内容是打印当前时间",
+      "shots": [
+        "v4-ai-script-01",
+        "v4-ai-script-02",
+        "v4-ai-script-03"
+      ],
+      "result": "AI 直接创建文件并写入代码，桌面上能看到生成好的脚本。"
+    },
+    {
+      "title": "解释系统配置",
+      "prompt": "请帮我把 /etc/fstab 里的挂载项解释成中文并给出优化建议",
+      "shots": [
+        "v4-ai-fstab-01",
+        "v4-ai-fstab-02"
+      ],
+      "result": "逐条说明每个挂载项的作用，并给出可以调整的建议。"
+    },
+    {
+      "title": "自动化信息收集与漏洞扫描",
+      "prompt": "目标为 192.168.226.58 生成一组信息收集与漏洞扫描命令：先用 naabu 扫端口，再用 nmap 深度扫描开放端口，最后用 nuclei 批量检测常见漏洞",
+      "shots": [
+        "v4-ai-recon-01",
+        "v4-ai-recon-02",
+        "v4-ai-recon-03",
+        "v4-ai-recon-04"
+      ],
+      "result": "生成完整的命令链路并逐步执行，省去自己拼参数的时间。"
+    },
+    {
+      "title": "清理系统垃圾",
+      "prompt": "清理临时目录，释放磁盘空间，并显示前 10 个占用最大目录",
+      "shots": [
+        "v4-ai-disk-01",
+        "v4-ai-disk-02"
+      ],
+      "result": "给出清理动作与磁盘占用排行。"
+    },
+    {
+      "title": "系统入侵排查",
+      "prompt": "帮我检查系统是否被入侵了",
+      "shots": [
+        "v4-ai-intrusion-01",
+        "v4-ai-intrusion-02"
+      ],
+      "result": "按检查项逐条排查并给出结论。"
+    }
+  ]
+}

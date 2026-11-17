@@ -1,0 +1,48 @@
+{
+  "PRODUCTS": {
+    "kde": {
+      "key": "kde",
+      "name": "KDE 魔改版",
+      "shortName": "KDE",
+      "versionLabel": "V5",
+      "status": "active",
+      "repo": "kali-linux-kde-beautify",
+      "fullName": "CuriousLearnerDev/kali-linux-kde-beautify",
+      "githubUrl": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify",
+      "issuesUrl": "https://github.com/CuriousLearnerDev/kali-linux-kde-beautify/issues",
+      "tagline": "完整图形桌面，Plasma 6.7 + fcitx5 输入法，物理机与虚拟机都能用",
+      "forWhom": "希望把 Kali 当日常主力环境用的人：需要完整桌面、中文输入、浏览器和编辑器，但工具自己按需装。",
+      "notForWhom": "追求极致轻量的老机器用户。V5 已经去掉了冗余插件与启动项，但完整桌面本身仍有基础开销。",
+      "desktop": "KDE Plasma 6.7",
+      "baseSystem": "Kali Linux 2026.3",
+      "highlights": [
+        "升级到 KDE Plasma 6.7（Qt 6.11.2），内核跟到 7.1.5",
+        "输入法换成 fcitx5 + 雾凇拼音，解决 Qt6 程序下无法输入的问题",
+        "终端环境改为 zsh + zim + powerlevel10k，启动更快",
+        "去掉冗余插件和启动项，移除高开销的面板模糊插件"
+      ]
+    },
+    "i3": {
+      "key": "i3",
+      "name": "i3wm 魔改版",
+      "shortName": "i3wm",
+      "versionLabel": "2023.3",
+      "status": "active",
+      "repo": "kali-linux-i3wm-beautify",
+      "fullName": "CuriousLearnerDev/kali-linux-i3wm-beautify",
+      "githubUrl": "https://github.com/CuriousLearnerDev/kali-linux-i3wm-beautify",
+      "issuesUrl": "https://github.com/CuriousLearnerDev/kali-linux-i3wm-beautify/issues",
+      "tagline": "超轻量平铺桌面，全键盘工作流",
+      "forWhom": "熟悉平铺窗口管理器、愿意自己写配置的进阶用户。作者原话：「i3wm 这个环境日常使用的话效率真的高」。",
+      "notForWhom": "作者在 README 里重复了三次：**不建议 Linux 小白使用**。很多东西要自己配置。",
+      "desktop": "i3wm + polybar",
+      "baseSystem": "Kali Linux 2023.3",
+      "highlights": [
+        "比 Kali 自带的 Xfce4 更轻量，占用系统资源更少",
+        "全键盘操作，浏览器也能用 vim 模式",
+        "polybar 状态栏 + ranger 文件管理 + fzf 历史搜索",
+        "基于 Kali 2023.3，后续继续维护"
+      ]
+    }
+  }
+}

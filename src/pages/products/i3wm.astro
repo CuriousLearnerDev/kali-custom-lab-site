@@ -1,0 +1,193 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/ui/Section.astro";
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import Button from "@/components/ui/Button.astro";
+import Badge from "@/components/ui/Badge.astro";
+import Note from "@/components/ui/Note.astro";
+import Screenshot from "@/components/media/Screenshot.astro";
+import GalleryGrid from "@/components/media/GalleryGrid.astro";
+import Lightbox from "@/components/media/Lightbox.astro";
+import SpecTable from "@/components/product/SpecTable.astro";
+import ShortcutsSection from "@/components/product/ShortcutsSection.astro";
+import EditionCard from "@/components/download/EditionCard.astro";
+import { shot, SHOTS } from "@/data/shots";
+import { PRODUCTS } from "@/data/products";
+import { editionsFor } from "@/data/downloads";
+import { getRepo } from "@/lib/github";
+
+const product = PRODUCTS.i3;
+const repo = getRepo("i3");
+const hero = shot("i3wm-desktop");
+const edition = editionsFor("i3")[0];
+const gallery = SHOTS.filter((s) => s.product === "i3" && !s.thin);
+
+const components = [
+  { name: "i3 + polybar", detail: "平铺窗口管理与状态栏（CPU / 内存 / 温度 / 网络 / 电池 / 日期 / 诗词等十余个模块）" },
+  { name: "ranger", detail: "终端文件管理器，带图片预览" },
+  { name: "fzf", detail: "命令历史模糊搜索，Ctrl+R 唤起" },
+  { name: "xcompmgr", detail: "让 i3 支持阴影与窗口透明" },
+  { name: "feh / nitrogen", detail: "壁纸设置，开机随机切换" },
+  { name: "i3lockr + xautolock", detail: "锁屏（--blur 60），无操作 10 分钟自动锁" },
+  { name: "dunst", detail: "系统通知；i3 默认没有通知，缺了容易出问题" },
+  { name: "lxpolkit", detail: "polkit 认证，缺了无法启动 root 的图形程序" },
+  { name: "copyq / blueman / mate-power-manager", detail: "剪贴板、蓝牙、电池托盘" },
+];
+---
+
+<BaseLayout
+  title={product.name}
+  description={`${product.tagline}。基于 Kali 2023.3 的 i3wm 定制版本，持续维护。`}
+>
+  <section class="relative overflow-hidden pb-12 pt-10 sm:pt-12">
+    <div class="shell relative">
+      <nav class="font-mono text-[11.5px] text-faint" aria-label="面包屑">
+        <a href="/" class="hover:text-breeze-700">首页</a>
+        <span class="mx-1.5">/</span>
+        <span class="text-ink-2">i3wm 版</span>
+      </nav>
+
+      <div class="mt-10 grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+        <div>
+          <div class="flex flex-wrap items-center gap-2">
+            <Badge tone="active">持续维护</Badge>
+            <Badge tone="neutral">Kali 2023.3</Badge>
+            <Badge tone="neutral">i3wm + polybar</Badge>
+          </div>
+
+          <h1 class="mt-4 text-[clamp(30px,4vw,46px)] font-display leading-[1.15] text-ink">
+            i3wm 魔改版
+          </h1>
+
+          <p class="lead mt-4 max-w-[48ch]">
+            超轻量的平铺桌面，全键盘工作流。作者的原话是「i3wm
+            比 kali 自带的 Xfce4 更轻量级，所占用的资源更少」，
+            但同时反复强调：不建议 Linux 小白使用。
+          </p>
+
+          <div class="mt-7 flex flex-wrap gap-3">
+            <Button href="#download" variant="secondary" size="lg">下载镜像</Button>
+            <Button href="#shortcuts" size="lg">看快捷键</Button>
+          </div>
+
+          <dl class="mt-7 flex flex-wrap gap-2 font-mono text-[11.5px] text-muted">
+            <div class="rounded-full border border-line bg-surface/60 px-2.5 py-1">
+              最后提交 {repo.pushed_at?.slice(0, 10)}
+            </div>
+            <div class="rounded-full border border-line bg-surface/60 px-2.5 py-1">
+              无 GitHub Release
+            </div>
+          </dl>
+        </div>
+
+        <Screenshot
+          shot={hero}
+          sizes="(max-width: 1024px) 92vw, 560px"
+          widths={[720, 1100, 1600]}
+          loading="eager"
+          avif
+        />
+      </div>
+    </div>
+  </section>
+
+  <Section id="specs" tone="deep" tight>
+    <SectionHeading index="01" kicker="规格速览" title="版本基本信息" />
+    <SpecTable product="i3" archive="11 GB 以上" extracted="27 GB 以上" />
+  </Section>
+
+  <Section>
+    <SectionHeading
+      index="02"
+      kicker="适合谁"
+      title="它不是一个给所有人准备的桌面"
+      lead="作者在 README 里把优缺点写得非常直接，这里原样转述。"
+    />
+    <div class="grid gap-5 md:grid-cols-2">
+      <div class="glass-flat p-5 sm:p-6">
+        <p class="label-caps text-ok-fg">优点</p>
+        <ul class="mt-3 space-y-2 text-[13.5px] leading-relaxed text-ink-2">
+          <li>· 全键盘操作，效率高；浏览器也能用 vim 模式</li>
+          <li>· 系统资源占用非常小，配完比 Xfce4 更省</li>
+          <li>· 高度可定制，所有东西都在你自己的配置文件里</li>
+        </ul>
+      </div>
+      <div class="glass-flat p-5 sm:p-6">
+        <p class="label-caps text-warn-fg">缺点</p>
+        <ul class="mt-3 space-y-2 text-[13.5px] leading-relaxed text-ink-2">
+          <li>· 啥东西都要自己配置，作者说自己配置 i3 挺费劲</li>
+          <li>· 有一个至今未解决的问题：终端类工具（如 sqlmap）点图标启动不了，要用启动器打开</li>
+          <li>· 登录界面没有美化（没装 sddm，只放了主题文件）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <Note variant="warn" title="作者原话">
+        <p>「警告！不建议 linux 小白使用」——这句话在 README 里出现了三次。</p>
+      </Note>
+    </div>
+  </Section>
+
+  <Section tone="deep">
+    <SectionHeading
+      index="03"
+      kicker="环境构成"
+      title="i3 只是骨架，其余都要自己补"
+      lead="作者逐个补齐了平铺桌面的缺口，这份清单也适合自己搭 i3 时照着看。"
+    />
+    <dl class="grid gap-x-8 gap-y-3 md:grid-cols-2">
+      {
+        components.map((item) => (
+          <div class="border-b border-line pb-2.5">
+            <dt class="font-mono text-[12.5px] font-medium text-ink">{item.name}</dt>
+            <dd class="mt-0.5 text-[13px] leading-relaxed text-muted">{item.detail}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </Section>
+
+  <Section id="shortcuts">
+    <SectionHeading
+      index="04"
+      kicker="快捷键"
+      title="两张表，$mod 就是 Alt"
+      lead="左边是 i3 自带的基础键位，右边是作者自己加的。"
+    />
+    <ShortcutsSection product="i3" />
+  </Section>
+
+  <Section tone="deep" id="gallery">
+    <SectionHeading
+      index="05"
+      kicker="界面截图"
+      title={`${gallery.length} 张实拍`}
+      lead="截图来自 2021–2023 年，与该镜像的 2023.3 版本大致对应。"
+    />
+    <GalleryGrid items={gallery} columns={2} />
+  </Section>
+
+  <Section id="download">
+    <SectionHeading
+      index="06"
+      kicker="下载"
+      title="唯一的下载渠道"
+      lead="天翼云盘。文件是 VMware 虚拟机文件，解压后直接导入。"
+    />
+    <div class="max-w-xl">
+      <EditionCard edition={edition} />
+    </div>
+
+    <div class="mt-6">
+      <Note variant="info" title="如果你现在才开始折腾 i3">
+        <p>
+          这个镜像是 2023 年的产物，Kali 本身已经更新很多轮。更实际的做法是
+          用当前版本的 Kali 自己搭 i3，把这里当作配置参考；或者直接用仍在维护的 KDE 版。
+        </p>
+      </Note>
+    </div>
+  </Section>
+
+  <Lightbox />
+</BaseLayout>

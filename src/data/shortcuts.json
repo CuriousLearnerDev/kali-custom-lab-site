@@ -1,0 +1,136 @@
+{
+  "KDE_SHORTCUTS": [
+    {
+      "keys": "Ctrl + Alt + Shift + Tab",
+      "action": "展开全部桌面"
+    },
+    {
+      "keys": "Ctrl + Alt + E",
+      "action": "展开全部窗口"
+    },
+    {
+      "keys": "Ctrl + Alt + D / S",
+      "action": "桌面滑动"
+    },
+    {
+      "keys": "Alt + Enter",
+      "action": "打开终端"
+    },
+    {
+      "keys": "Win + = / -",
+      "action": "桌面放大 / 放小"
+    },
+    {
+      "keys": "Win + T",
+      "action": "桌面编辑磁吸区域"
+    }
+  ],
+  "I3_BASIC_SHORTCUTS": [
+    {
+      "keys": "$mod + Enter",
+      "action": "打开一个新终端"
+    },
+    {
+      "keys": "$mod + h",
+      "action": "默认：创建窗口在窗口右面"
+    },
+    {
+      "keys": "$mod + v",
+      "action": "在当前窗口下面创建"
+    },
+    {
+      "keys": "$mod + s",
+      "action": "窗口堆叠"
+    },
+    {
+      "keys": "$mod + w",
+      "action": "选项卡式"
+    },
+    {
+      "keys": "$mod + e",
+      "action": "拆分 / 切换拆分"
+    },
+    {
+      "keys": "$mod + f",
+      "action": "全屏 / 退出全屏"
+    },
+    {
+      "keys": "$mod + Shift + q",
+      "action": "关闭窗口"
+    },
+    {
+      "keys": "$mod + 数字",
+      "action": "创建工作区 / 切换工作区"
+    },
+    {
+      "keys": "$mod + Shift + 数字",
+      "action": "把窗口移到指定工作区"
+    },
+    {
+      "keys": "$mod + Shift + Space",
+      "action": "切换窗口的浮动模式"
+    },
+    {
+      "keys": "$mod + r",
+      "action": "设置窗口大小（resize 模式）"
+    },
+    {
+      "keys": "$mod + Shift + 方向键",
+      "action": "移动窗口的位置"
+    },
+    {
+      "keys": "$mod + Shift + r",
+      "action": "重启 i3"
+    }
+  ],
+  "I3_CUSTOM_SHORTCUTS": [
+    {
+      "keys": "$mod + -",
+      "action": "隐藏窗口（scratchpad）"
+    },
+    {
+      "keys": "$mod + =",
+      "action": "再现窗口"
+    },
+    {
+      "keys": "$mod + Shift + a",
+      "action": "打开程序启动器（xfce4-appfinder）"
+    },
+    {
+      "keys": "$mod + Ctrl + d",
+      "action": "将工作区移至下一个"
+    },
+    {
+      "keys": "$mod + Ctrl + s",
+      "action": "上一个工作区并跟随"
+    },
+    {
+      "keys": "$mod + Shift + Ctrl + q",
+      "action": "系统菜单：l 锁屏 / p 关机 / r 重启 / e 退出 i3"
+    },
+    {
+      "keys": "$mod + m",
+      "action": "开启 polybar"
+    },
+    {
+      "keys": "$mod + Shift + m",
+      "action": "杀死 polybar"
+    },
+    {
+      "keys": "$mod + n",
+      "action": "有边框和标题栏"
+    },
+    {
+      "keys": "$mod + u",
+      "action": "无边框和标题栏"
+    },
+    {
+      "keys": "$mod + o",
+      "action": "1 像素边框"
+    },
+    {
+      "keys": "$mod + b",
+      "action": "在三种边框风格之间循环切换"
+    }
+  ]
+}

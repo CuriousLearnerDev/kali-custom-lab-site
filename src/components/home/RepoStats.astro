@@ -1,0 +1,98 @@
+---
+import GlassCard from "@/components/ui/GlassCard.astro";
+import { TOTALS, SNAPSHOT_DATE, getRepo, getCommits, stat } from "@/lib/github";
+import { PRODUCTS } from "@/data/products";
+
+const kde = getRepo("kde");
+const i3 = getRepo("i3");
+const commits = getCommits("kde", 3);
+
+const tiles = [
+  { label: "Stars", value: stat(TOTALS.stars), note: "两个仓库合计" },
+  { label: "Forks", value: stat(TOTALS.forks), note: "两个仓库合计" },
+  { label: "Releases", value: stat(TOTALS.releases), note: "KDE 仓库 3.0 / 4.0" },
+  { label: "Open Issues", value: stat(TOTALS.openIssues), note: "用户反馈的问题" },
+];
+---
+
+<div class="grid gap-6 lg:grid-cols-[1.1fr_1fr] lg:gap-8">
+  <GlassCard padding="lg">
+    <dl class="grid grid-cols-2 gap-x-6 gap-y-6">
+      {
+        tiles.map((tile) => (
+          <div>
+            <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
+              {tile.label}
+            </dt>
+            <dd class="mt-1 font-display text-[30px] font-semibold leading-none text-ink tabular-nums">
+              {tile.value}
+            </dd>
+            <p class="mt-1.5 text-[12px] text-muted">{tile.note}</p>
+          </div>
+        ))
+      }
+    </dl>
+    <p class="mt-6 border-t border-line pt-4 font-mono text-[11.5px] text-faint">
+      数据快照于 {SNAPSHOT_DATE} · 查看
+      <a
+        href={kde.html_url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-breeze-700 underline decoration-breeze-300 underline-offset-2"
+      >
+        GitHub 实时数据
+      </a>
+    </p>
+  </GlassCard>
+
+  <GlassCard padding="lg">
+    <p class="label-caps">KDE 仓库最近提交</p>
+    <ul class="mt-4 space-y-3.5">
+      {
+        commits.map((commit) => (
+          <li class="flex gap-3">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-breeze-300" aria-hidden="true" />
+            <div class="min-w-0">
+              <a
+                href={commit.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block truncate text-[13.5px] text-ink-2 transition-colors hover:text-breeze-700"
+              >
+                {commit.message}
+              </a>
+              <p class="mt-0.5 font-mono text-[11px] text-faint">
+                {commit.sha} · {commit.date?.slice(0, 10) ?? "—"}
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-6 border-t border-line pt-4">
+      <p class="text-[12.5px] leading-relaxed text-muted">
+        仓库以发布公告与网盘索引为主，代码提交不多；版本迭代体现在 README 与镜像更新上。
+      </p>
+      <div class="mt-3 flex flex-wrap gap-4 font-mono text-[11.5px]">
+        <a
+          href={PRODUCTS.kde.issuesUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-breeze-700 underline decoration-breeze-300 underline-offset-2"
+        >
+          提 issue
+        </a>
+        <a
+          href={PRODUCTS.i3.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-breeze-700 underline decoration-breeze-300 underline-offset-2"
+        >
+          i3wm 仓库
+        </a>
+        <span class="text-faint">i3wm：{stat(i3.stars)} ★</span>
+      </div>
+    </div>
+  </GlassCard>
+</div>

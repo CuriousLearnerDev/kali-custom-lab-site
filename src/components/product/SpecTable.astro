@@ -1,0 +1,47 @@
+---
+import Note from "@/components/ui/Note.astro";
+import { CURRENT_VERSION } from "@/data/versions";
+import { PRODUCTS } from "@/data/products";
+
+interface Props {
+  product: "kde" | "i3";
+  version?: string;
+  archive?: string;
+  extracted?: string;
+}
+
+const { product, version, archive, extracted } = Astro.props;
+const p = PRODUCTS[product];
+
+const rows = [
+  { label: "基础系统", value: version ?? p.baseSystem },
+  { label: "桌面环境", value: p.desktop },
+  { label: "内核", value: product === "kde" ? CURRENT_VERSION.kernel : "随发行版" },
+  { label: "固件类型", value: "BIOS（非 UEFI）" },
+  { label: "默认账号", value: `${CURRENT_VERSION.defaultUser} / ${CURRENT_VERSION.defaultPassword}` },
+  { label: "处理器架构", value: "amd64（不支持 ARM）" },
+  ...(archive ? [{ label: "压缩包", value: archive }] : []),
+  ...(extracted ? [{ label: "解压后", value: extracted }] : []),
+];
+---
+
+<div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+  <dl class="grid gap-x-8 gap-y-3 sm:grid-cols-2">
+    {
+      rows.map((row) => (
+        <div class="flex items-baseline justify-between gap-4 border-b border-line pb-2.5">
+          <dt class="shrink-0 font-mono text-[12px] text-faint">{row.label}</dt>
+          <dd class="text-right text-[13.5px] text-ink-2">{row.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <Note variant="warn" title="首次登录后请立刻改密码">
+    <p>
+      默认账号 <code>zss</code> / 密码 <code>ss</code> 写在公开的 README 里，
+      所有下载过镜像的人都知道。登录后请先
+      <code>passwd</code> 改掉密码，并且不要把虚拟机、SSH 或任何服务直接暴露到公网。
+    </p>
+  </Note>
+</div>

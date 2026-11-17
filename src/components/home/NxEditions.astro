@@ -1,0 +1,133 @@
+---
+import { Picture } from "astro:assets";
+import { shot } from "@/data/shots";
+import { PRODUCT_LIST } from "@/data/products";
+import { VERSIONS } from "@/data/versions";
+import { getRepo } from "@/lib/github";
+
+const rows = [
+  {
+    product: PRODUCT_LIST[0],
+    version: VERSIONS.find((v) => v.id === "v5"),
+    image: shot("v5-ui-01"),
+    index: "01",
+    points: ["Plasma 6.7 + fcitx5 雾凇拼音", "Gemini CLI 集成在终端里", "纯净 Kali 基础，未预装第三方工具"],
+    href: "/products/kde/",
+  },
+  {
+    product: PRODUCT_LIST[1],
+    version: VERSIONS.find((v) => v.id === "i3"),
+    image: shot("i3wm-desktop"),
+    index: "02",
+    points: ["i3wm + polybar 平铺桌面", "全键盘工作流，$mod = Alt", "比默认 Xfce4 更省资源"],
+    href: "/products/i3wm/",
+  },
+];
+---
+
+<!-- 两条产品线：左右交替的全幅行，像产品页而不是卡片墙 -->
+<div class="divide-y divide-[var(--color-line)]">
+  {
+    rows.map((row, i) => {
+      const flip = i % 2 === 1;
+      const repo = getRepo(row.product.key);
+      const archived = row.product.status === "archived";
+
+      return (
+        <section class="relative overflow-hidden">
+          <div
+            class:list={[
+              "grid items-stretch lg:grid-cols-2",
+              flip && "lg:[&>*:first-child]:order-2",
+            ]}
+          >
+            <!-- 图：出血到列的边缘，不加窗口框 -->
+            <div class="relative min-h-[280px] bg-[#0b0e12] lg:min-h-[520px]">
+              <Picture
+                fallbackFormat="webp"
+                src={row.image.image}
+                formats={["webp"]}
+                widths={[720, 1100, 1600]}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                alt={row.image.alt}
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover"
+              />
+              <div
+                class:list={[
+                  "absolute inset-0",
+                  flip
+                    ? "bg-[linear-gradient(270deg,rgba(10,13,18,.55),transparent_55%)]"
+                    : "bg-[linear-gradient(90deg,rgba(10,13,18,.55),transparent_55%)]",
+                ]}
+                aria-hidden="true"
+              />
+            </div>
+
+            <!-- 文字 -->
+            <div class="flex flex-col justify-center px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
+              <div class="flex items-baseline gap-3">
+                <span class="font-mono text-[12px] text-faint">{row.index}</span>
+                {archived ? (
+                  <span class="font-mono text-[11px] uppercase tracking-[0.14em] text-warn-fg">
+                    已归档
+                  </span>
+                ) : (
+                  <span class="font-mono text-[11px] uppercase tracking-[0.14em] text-breeze-600">
+                    持续维护
+                  </span>
+                )}
+              </div>
+
+              <h2 class="mt-3 text-[clamp(28px,3.6vw,44px)] font-semibold leading-[1.08] tracking-[-0.015em] text-ink">
+                {row.product.name}
+                <span class="ml-2 font-mono text-[13px] font-normal tracking-normal text-faint">
+                  {row.version?.label}
+                </span>
+              </h2>
+
+              <p class="mt-4 max-w-[40ch] text-[14.5px] leading-relaxed text-muted">
+                {row.product.tagline}
+              </p>
+
+              <ul class="mt-6 space-y-2 border-t border-line pt-5">
+                {row.points.map((point) => (
+                  <li class="flex items-start gap-2.5 text-[13.5px] text-ink-2">
+                    <span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-breeze-500" aria-hidden="true" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+
+              <dl class="mt-5 flex flex-wrap gap-x-8 gap-y-2 font-mono text-[11.5px]">
+                <div>
+                  <dt class="text-faint">基础系统</dt>
+                  <dd class="text-ink-2">{row.product.baseSystem}</dd>
+                </div>
+                <div>
+                  <dt class="text-faint">桌面</dt>
+                  <dd class="text-ink-2">{row.product.desktop}</dd>
+                </div>
+                <div>
+                  <dt class="text-faint">仓库</dt>
+                  <dd class="text-ink-2">{repo.forks} fork · {repo.open_issues} issues</dd>
+                </div>
+              </dl>
+
+              <a
+                href={row.href}
+                class="mt-7 inline-flex items-center gap-2 text-[14px] font-medium text-breeze-700 transition-colors hover:text-breeze-600"
+              >
+                查看{row.product.name}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+      );
+    })
+  }
+</div>

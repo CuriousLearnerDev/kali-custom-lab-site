@@ -1,0 +1,44 @@
+---
+import { FEATURED_FAQ, issueUrl } from "@/data/faq";
+
+const REPO = "kali-linux-kde-beautify";
+---
+
+<ul class="space-y-2.5">
+  {
+    FEATURED_FAQ.map((entry) => (
+      <li>
+        <details class="group rounded-card border border-line bg-surface/70 px-5 py-4 [&_summary]:cursor-pointer">
+          <summary class="flex list-none items-start gap-3 [&::-webkit-details-marker]:hidden">
+            <span
+              class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full border border-line text-[11px] text-muted transition-transform group-open:rotate-45"
+              aria-hidden="true"
+            >
+              +
+            </span>
+            <span class="font-display text-[15px] font-medium text-ink">
+              {entry.question}
+            </span>
+          </summary>
+          <div class="mt-3 pl-8">
+            <p class="text-[13.5px] leading-[1.85] text-muted">{entry.answer}</p>
+            {entry.relatedIssues.length > 0 && (
+              <p class="mt-2 flex flex-wrap gap-3 font-mono text-[11.5px]">
+                {entry.relatedIssues.map((num) => (
+                  <a
+                    href={issueUrl(REPO, num)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-breeze-700 underline decoration-breeze-300 underline-offset-2 hover:text-breeze-600"
+                  >
+                    issue #{num}
+                  </a>
+                ))}
+              </p>
+            )}
+          </div>
+        </details>
+      </li>
+    ))
+  }
+</ul>

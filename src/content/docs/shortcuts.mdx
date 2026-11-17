@@ -1,0 +1,35 @@
+---
+title: "快捷键速查"
+description: "KDE 版 6 个常用键位，以及 i3wm 版的完整键位表。"
+category: "使用技巧"
+order: 5
+updated: 2026-11-16
+sources: ["readme#使用技巧", "readme-i3#快捷键"]
+relatedIssues: []
+---
+
+## KDE 版
+
+作者建议先看 [B 站视频教程](https://www.bilibili.com/video/BV1UJCcYcEuL/)，文字表如下。
+v3 和 v4 的快捷键基本一致。
+
+<ShortcutsSection product="kde" />
+
+## i3wm 版
+
+<Note variant="warn" title="$mod 是 Alt 键">
+i3 配置里用 `$mod` 表示修饰键。这个镜像把它映射成了键盘的 **Alt** 键，不是 Win 键。
+方向键与 vi 一致：`$mod+j` 左、`$mod+k` 下、`$mod+l` 上、`$mod+；` 右。
+</Note>
+
+<ShortcutsSection product="i3" />
+
+## 终端里的快捷操作
+
+除了窗口管理，终端本身也有几个高频操作：
+
+| 操作 | 说明 |
+| --- | --- |
+| `Ctrl + R` | 用 fzf 搜索历史命令 |
+| `r` | 打开 ranger 文件管理器 |
+| `neofetch` | 查看系统信息 |

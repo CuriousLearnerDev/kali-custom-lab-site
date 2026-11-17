@@ -1,0 +1,52 @@
+---
+import { Picture } from "astro:assets";
+import { shots } from "@/data/shots";
+
+const items = shots([
+  "v5-ui-03",
+  "v5-ui-01",
+  "v5-ui-11",
+  "v5-ui-05",
+  "v5-ui-09",
+  "i3wm-desktop",
+]);
+---
+
+<!-- 截图墙：出血铺满，1px 缝隙当分隔线，不加任何卡片装饰 -->
+<div class="grid grid-cols-1 gap-px bg-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-3">
+  {
+    items.map((item) => (
+      <a
+        href={item.image.src}
+        data-shot
+        data-caption={item.caption}
+        data-alt={item.alt}
+        class="group relative block overflow-hidden bg-[#0b0e12]"
+        aria-label={`放大查看：${item.alt}`}
+      >
+        <Picture
+          fallbackFormat="webp"
+          src={item.image}
+          formats={["webp"]}
+          widths={[640, 1024, 1600]}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          alt={item.alt}
+          loading="lazy"
+          decoding="async"
+          class="aspect-[16/10] w-full object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-100"
+        />
+        <div
+          class="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 bg-[linear-gradient(0deg,rgba(8,11,15,.85),transparent)] px-4 pb-3 pt-10"
+        >
+          <span class="font-mono text-[11.5px] text-white/80">{item.caption}</span>
+          <svg
+            class="text-white/40 transition-colors group-hover:text-white/90"
+            width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"
+          >
+            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+      </a>
+    ))
+  }
+</div>

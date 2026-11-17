@@ -1,0 +1,203 @@
+/* ============================================================
+   文档正文排版（.prose-cn）
+   MDX 渲染区域统一使用，不依赖 @tailwindcss/typography
+   ============================================================ */
+
+.prose-cn {
+  color: var(--color-ink-2);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.prose-cn > * + * {
+  margin-top: 1.15em;
+}
+
+.prose-cn h2 {
+  font-size: clamp(21px, 2.2vw, 25px);
+  line-height: 1.4;
+  margin-top: 2.4em;
+  margin-bottom: 0.7em;
+  padding-left: 12px;
+  border-left: 3px solid var(--color-breeze-500);
+  scroll-margin-top: calc(var(--header-h) + 24px);
+}
+
+.prose-cn h3 {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-top: 1.9em;
+  margin-bottom: 0.5em;
+  color: var(--color-ink);
+  scroll-margin-top: calc(var(--header-h) + 24px);
+}
+
+.prose-cn h4 {
+  font-size: 15.5px;
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
+  color: var(--color-ink);
+}
+
+.prose-cn p {
+  margin-block: 1.15em;
+}
+
+.prose-cn strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.prose-cn a {
+  color: var(--color-breeze-700);
+  text-decoration: underline;
+  text-decoration-color: rgba(14, 103, 172, 0.32);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 160ms var(--ease-out);
+}
+
+.prose-cn a:hover {
+  text-decoration-color: var(--color-breeze-700);
+}
+
+.prose-cn ul,
+.prose-cn ol {
+  padding-left: 1.35em;
+  margin-block: 1.05em;
+}
+
+.prose-cn ul {
+  list-style: disc;
+}
+
+.prose-cn ol {
+  list-style: decimal;
+}
+
+.prose-cn li {
+  margin-block: 0.42em;
+}
+
+.prose-cn li::marker {
+  color: var(--color-breeze-500);
+}
+
+.prose-cn code {
+  font-family: var(--font-mono);
+  font-size: 0.855em;
+  background: var(--color-breeze-50);
+  color: #0b4f86;
+  border: 1px solid rgba(44, 155, 230, 0.18);
+  border-radius: 5px;
+  padding: 0.1em 0.38em;
+  word-break: break-word;
+}
+
+.prose-cn pre {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  background: #0b1524;
+  color: #d7e3f2;
+  border-radius: var(--radius-control);
+  padding: 16px 18px;
+  overflow-x: auto;
+  margin-block: 1.4em;
+  box-shadow: var(--shadow-1);
+}
+
+.prose-cn pre code {
+  background: none;
+  border: 0;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+
+.prose-cn blockquote {
+  margin-block: 1.4em;
+  padding: 14px 18px;
+  border-left: 3px solid var(--color-breeze-300);
+  border-radius: 0 var(--radius-control) var(--radius-control) 0;
+  background: linear-gradient(
+    90deg,
+    rgba(234, 244, 254, 0.9),
+    rgba(234, 244, 254, 0.35)
+  );
+  color: var(--color-ink-2);
+}
+
+.prose-cn blockquote > * + * {
+  margin-top: 0.7em;
+}
+
+.prose-cn blockquote p {
+  margin-block: 0.4em;
+}
+
+.prose-cn hr {
+  border: 0;
+  border-top: 1px solid var(--color-line);
+  margin-block: 2.4em;
+}
+
+/* 表格：窄屏横向滚动，不撑破布局 */
+.prose-cn table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-block: 1.5em;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+  overflow: hidden;
+}
+
+.prose-cn thead th {
+  background: var(--color-breeze-50);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-line-strong);
+  white-space: nowrap;
+}
+
+.prose-cn tbody td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--color-line);
+  vertical-align: top;
+}
+
+.prose-cn tbody tr:nth-child(even) {
+  background: var(--color-surface-tint);
+}
+
+.prose-cn tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.prose-cn > table:first-child {
+  margin-top: 0;
+}
+
+/* 表格外层滚动容器（由 MDX 组件注入） */
+.table-scroll {
+  overflow-x: auto;
+  margin-block: 1.5em;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-scroll table {
+  margin-block: 0;
+  min-width: 520px;
+}
+
+/* 图片 */
+.prose-cn img {
+  border-radius: var(--radius-control);
+  border: 1px solid var(--color-line);
+}

@@ -1,0 +1,90 @@
+---
+import { SITE, DISCLAIMER } from "@/data/site";
+import { SNAPSHOT_DATE } from "@/lib/github";
+import Logo from "@/components/brand/Logo.astro";
+
+const year = new Date().getFullYear();
+
+const columns = [
+  {
+    title: "方案",
+    links: [
+      { href: "/products/kde/", label: "KDE 版 V5" },
+      { href: "/products/i3wm/", label: "i3wm 版" },
+      { href: "/download/", label: "下载中心" },
+    ],
+  },
+  {
+    title: "帮助",
+    links: [
+      { href: "/docs/", label: "文档中心" },
+      { href: "/docs/faq/", label: "常见问题" },
+      { href: "/docs/troubleshooting/", label: "故障排查" },
+    ],
+  },
+  {
+    title: "项目",
+    links: [
+      { href: "/about/", label: "关于作者" },
+      { href: `https://github.com/${SITE.githubOrg}/kali-linux-kde-beautify/issues`, label: "反馈问题" },
+      { href: "/about/#legal", label: "免责声明" },
+    ],
+  },
+] as const;
+---
+
+<footer class="mt-8 border-t border-line bg-canvas-deep/60">
+  <div class="shell py-14">
+    <div class="grid gap-10 md:grid-cols-[1.5fr_repeat(3,1fr)]">
+      <div>
+        <Logo />
+        <p class="mt-4 max-w-[34ch] text-[14px] leading-relaxed text-muted">
+          两套开箱即用的 Kali Linux 桌面定制方案，从 2021 年持续打磨到 V5。
+        </p>
+        <p class="mt-4 font-mono text-[11.5px] text-faint">
+          GitHub 数据快照于 {SNAPSHOT_DATE}
+        </p>
+      </div>
+
+      {
+        columns.map((col) => (
+          <nav aria-label={col.title}>
+            <h2 class="label-caps mb-3">{col.title}</h2>
+            <ul class="space-y-2">
+              {col.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-[14px] text-muted transition-colors hover:text-breeze-700"
+                    {...(link.href.startsWith("http")
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+    </div>
+
+    <div
+      class="mt-12 space-y-2 rounded-card border border-line bg-surface/60 p-5 text-[12.5px] leading-relaxed text-muted"
+    >
+      <p>{DISCLAIMER.affiliation}</p>
+      <p>{DISCLAIMER.license}</p>
+      <p>{DISCLAIMER.usage}</p>
+    </div>
+
+    <div
+      class="mt-8 flex flex-col gap-2 border-t border-line pt-6 text-[12px] text-faint sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>© {year} {SITE.name} · 由 {SITE.author.name} 维护</p>
+      <p class="font-mono">
+        字体 Space Grotesk / IBM Plex Mono / Noto Sans SC · SIL OFL 1.1
+      </p>
+    </div>
+  </div>
+</footer>

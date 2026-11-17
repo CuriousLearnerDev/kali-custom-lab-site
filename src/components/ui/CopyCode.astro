@@ -1,0 +1,47 @@
+---
+/**
+ * 提取码展示。默认是纯文本（无 JS 也看得到、可手动抄），
+ * JS 只负责加一个复制按钮。
+ */
+interface Props {
+  value: string;
+  label?: string;
+  class?: string;
+}
+const { value, label = "提取码", class: className = "" } = Astro.props;
+---
+
+<span class:list={["inline-flex items-center gap-2", className]}>
+  <span class="label-caps text-faint">{label}</span>
+  <code
+    class="rounded-[6px] border border-line-strong bg-surface px-2 py-0.5 font-mono text-[13px] font-medium tracking-[0.08em] text-ink"
+  >
+    {value}
+  </code>
+  <button type="button" class="copy-btn" data-copy={value} aria-label={`复制${label} ${value}`}>
+    复制
+  </button>
+</span>
+
+<script>
+  document.addEventListener("click", async (event) => {
+    const btn = (event.target as HTMLElement | null)?.closest<HTMLButtonElement>(
+      "button[data-copy]",
+    );
+    if (!btn) return;
+    const text = btn.dataset.copy ?? "";
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      const original = btn.textContent;
+      btn.textContent = "已复制";
+      btn.dataset.copied = "true";
+      setTimeout(() => {
+        btn.textContent = original;
+        delete btn.dataset.copied;
+      }, 1600);
+    } catch {
+      /* 剪贴板不可用时保持静默：用户仍可手动选中复制 */
+    }
+  });
+</script>

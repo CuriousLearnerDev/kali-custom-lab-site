@@ -1,0 +1,40 @@
+---
+interface Props {
+  index?: string;
+  kicker: string;
+  title: string;
+  lead?: string;
+  align?: "left" | "split";
+  class?: string;
+}
+
+const { index, kicker, title, lead, align = "split", class: className = "" } =
+  Astro.props;
+---
+
+<div class:list={["mb-10 sm:mb-12", className]}>
+  <div class="section-label">
+    <span class="label-caps">
+      {index && <span class="text-breeze-600">{index}</span>}
+      {index && <span class="mx-2 text-faint">/</span>}
+      {kicker}
+    </span>
+  </div>
+
+  <div
+    class:list={[
+      "mt-4",
+      align === "split"
+        ? "flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
+        : "",
+    ]}
+  >
+    <div class="min-w-0">
+      <h2 class="text-h2 font-display text-ink">{title}</h2>
+      {lead && <p class="lead mt-3 max-w-[58ch]">{lead}</p>}
+    </div>
+    <div class="flex shrink-0 items-center gap-3">
+      <slot name="action" />
+    </div>
+  </div>
+</div>

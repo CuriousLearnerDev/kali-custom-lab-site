@@ -1,0 +1,39 @@
+---
+import { APPEARANCE, PRESETS } from "@/data/tools";
+---
+
+<div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
+  <div class="glass-flat p-5 sm:p-6">
+    <p class="label-caps">外观定制一览</p>
+    <dl class="mt-4 space-y-2">
+      {
+        APPEARANCE.map((row) => (
+          <div class="flex items-baseline justify-between gap-4 border-b border-line pb-2 last:border-0 last:pb-0">
+            <dt class="font-mono text-[12px] text-faint">{row.label}</dt>
+            <dd class="text-right text-[13.5px] text-ink-2">{row.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+
+  <div class="glass-flat p-5 sm:p-6">
+    <p class="label-caps">预装与优化</p>
+    <div class="mt-4 space-y-4">
+      {
+        PRESETS.map((group) => (
+          <div>
+            <p class="mb-2 font-mono text-[11.5px] text-faint">{group.title}</p>
+            <ul class="flex flex-wrap gap-1.5">
+              {group.items.map((item) => (
+                <li class="rounded-[6px] border border-line bg-surface px-2 py-0.5 text-[12px] text-ink-2">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

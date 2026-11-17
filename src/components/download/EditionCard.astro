@@ -1,0 +1,92 @@
+---
+import type { Edition } from "@/data/downloads";
+import { PROVIDERS } from "@/data/downloads";
+import ProviderLink from "./ProviderLink.astro";
+import Badge from "@/components/ui/Badge.astro";
+
+interface Props {
+  edition: Edition;
+  recommended?: boolean;
+}
+
+const { edition, recommended = false } = Astro.props;
+const pending = edition.status === "pending";
+const isRecommended = recommended && !pending;
+
+const caveats = [
+  ...new Set(
+    edition.channels
+      .map((c) => PROVIDERS[c.provider].caveat)
+      .filter((c): c is string => Boolean(c)),
+  ),
+];
+---
+
+<article
+  class:list={[
+    "glass-flat flex h-full flex-col",
+    isRecommended ? "border-breeze-300/80 ring-1 ring-breeze-300/30" : "",
+  ]}
+>
+  <div class="p-5 sm:p-6">
+    <div class="flex items-center justify-between gap-3">
+      <h3 class="font-display text-[18px] font-semibold text-ink">
+        {edition.name}
+      </h3>
+      {isRecommended && <Badge tone="accent">推荐</Badge>}
+      {pending && <Badge tone="neutral">待发布</Badge>}
+    </div>
+
+    <p class="mt-2 text-[13.5px] leading-relaxed text-muted">
+      {edition.summary}
+    </p>
+
+    <dl class="mt-4 grid grid-cols-2 gap-3 border-y border-line py-3 font-mono text-[12px]">
+      <div>
+        <dt class="text-faint">压缩包</dt>
+        <dd class="mt-0.5 text-[14px] font-medium text-ink tabular-nums">
+          {edition.archiveSize}
+        </dd>
+      </div>
+      <div>
+        <dt class="text-faint">解压后</dt>
+        <dd class="mt-0.5 text-[14px] font-medium text-ink tabular-nums">
+          {edition.extractedSize}
+        </dd>
+      </div>
+    </dl>
+
+    <div class="mt-4 space-y-2">
+      {
+        edition.channels.length > 0 ? (
+          edition.channels.map((channel) => <ProviderLink channel={channel} />)
+        ) : (
+          <p class="rounded-control border border-dashed border-line-strong bg-surface-tint px-3 py-2.5 text-[12.5px] leading-relaxed text-muted">
+            作者暂未公布下载地址。公布后这里会更新，也可以直接看仓库 README。
+          </p>
+        )
+      }
+    </div>
+  </div>
+
+  {
+    (edition.notes.length > 0 || caveats.length > 0) && (
+      <div class="mt-auto border-t border-line px-5 py-4 sm:px-6">
+        <ul class="space-y-1.5 text-[12.5px] leading-relaxed text-muted">
+          {caveats.map((caveat) => (
+            <li class="flex gap-2">
+              <span class="text-warn-fg" aria-hidden="true">!</span>
+              <span>{caveat}</span>
+            </li>
+          ))}
+          {edition.notes.map((note) => (
+            <li class="flex gap-2">
+              <span class="text-faint" aria-hidden="true">·</span>
+              <span>{note}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</article>

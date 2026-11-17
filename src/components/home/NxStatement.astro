@@ -1,0 +1,40 @@
+---
+import { TIMELINE } from "@/data/timeline";
+---
+
+<!-- 宣言段：超大字号、大量留白，和首屏形成节奏对比 -->
+<section class="border-b border-line py-20 sm:py-28">
+  <div class="shell">
+    <p class="font-mono text-[11.5px] uppercase tracking-[0.22em] text-faint">
+      Manifesto
+    </p>
+
+    <p
+      class="mt-6 max-w-[22ch] text-[clamp(28px,4.4vw,56px)] font-semibold leading-[1.12] tracking-[-0.015em] text-ink"
+    >
+      八年。<span class="text-muted">五代。</span><br />
+      一个人维护。
+    </p>
+
+    <div class="mt-10 grid gap-8 border-t border-line pt-8 sm:grid-cols-3">
+      <p class="max-w-[34ch] text-[14px] leading-relaxed text-muted">
+        从 2021 年在 DRT 安全团队发布的第一版 KDE 美化，到 2026 年跟随 Kali
+        2026.3 的 V5 —— 中间没有团队、没有赞助，只有一个人反复重做同一件事。
+      </p>
+      <p class="max-w-[34ch] text-[14px] leading-relaxed text-muted">
+        每一版都在回答同一个问题：怎么让一套渗透测试系统，在虚拟机里也跑得顺手，
+        而不是装完就想关掉。
+      </p>
+      <dl class="space-y-2 font-mono text-[12px]">
+        {
+          TIMELINE.slice(-3).map((item) => (
+            <div class="flex justify-between gap-3 border-b border-line pb-1.5">
+              <dt class="text-faint">{item.time}</dt>
+              <dd class="text-right text-ink-2">{item.title.split("：")[0]}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</section>

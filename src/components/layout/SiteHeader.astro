@@ -1,0 +1,84 @@
+---
+import { NAV, SITE } from "@/data/site";
+import Logo from "@/components/brand/Logo.astro";
+import ThemeToggle from "@/components/ui/ThemeToggle.astro";
+import { CURRENT_VERSION } from "@/data/versions";
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) => {
+  const target = href.replace(/\/$/, "") || "/";
+  if (target === "/") return path === "/";
+  return path === target || path.startsWith(`${target}/`);
+};
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-line bg-[var(--header-bg)] backdrop-blur-xl backdrop-saturate-150"
+  style="--header-h: 64px"
+>
+  <div class="shell flex h-16 items-center gap-4">
+    <a href="/" class="shrink-0" aria-label={`${SITE.name} 首页`}>
+      <Logo />
+    </a>
+
+    <!-- 桌面导航 -->
+    <nav class="ml-auto hidden items-center gap-1 md:flex" aria-label="主导航">
+      {
+        NAV.filter((item) => item.href !== "/").map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              "relative rounded-control px-3 py-1.5 text-[14px] transition-colors",
+              isActive(item.href)
+                ? "text-ink font-medium"
+                : "text-muted hover:text-ink",
+            ]}
+            aria-current={isActive(item.href) ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="ml-auto flex items-center gap-2 md:ml-0">
+      <ThemeToggle />
+
+      <a href="/download/" class="btn btn--primary btn--sm">
+        下载 {CURRENT_VERSION.label}
+      </a>
+
+      <!-- 移动端菜单：原生 details，无 JS -->
+      <details class="relative md:hidden">
+        <summary
+          class="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-control border border-line bg-surface/70 text-ink-2 [&::-webkit-details-marker]:hidden"
+          aria-label="打开导航菜单"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"></path>
+          </svg>
+        </summary>
+        <div
+          class="absolute right-0 top-[calc(100%+10px)] w-[min(78vw,260px)] rounded-card border border-line bg-surface p-2 shadow-3"
+        >
+          {
+            NAV.map((item) => (
+              <a
+                href={item.href}
+                class:list={[
+                  "block rounded-control px-3 py-2 text-[14px] transition-colors",
+                  isActive(item.href)
+                    ? "bg-breeze-50 font-medium text-breeze-700"
+                    : "text-ink-2 hover:bg-canvas-deep",
+                ]}
+                aria-current={isActive(item.href) ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </div>
+      </details>
+    </div>
+  </div>
+</header>

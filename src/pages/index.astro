@@ -1,0 +1,139 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/ui/Section.astro";
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import Button from "@/components/ui/Button.astro";
+import NxHero from "@/components/home/NxHero.astro";
+import NxStatement from "@/components/home/NxStatement.astro";
+import NxEditions from "@/components/home/NxEditions.astro";
+import Highlights from "@/components/home/Highlights.astro";
+import AiTeaser from "@/components/home/AiTeaser.astro";
+import GalleryPreview from "@/components/home/GalleryPreview.astro";
+import TimelineStrip from "@/components/home/TimelineStrip.astro";
+import DownloadCallout from "@/components/home/DownloadCallout.astro";
+import FaqTeaser from "@/components/home/FaqTeaser.astro";
+import RepoStats from "@/components/home/RepoStats.astro";
+import Lightbox from "@/components/media/Lightbox.astro";
+import { SITE } from "@/data/site";
+import { CURRENT_VERSION } from "@/data/versions";
+import { PRODUCTS } from "@/data/products";
+import { TOTALS, SNAPSHOT_DATE } from "@/lib/github";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE.name,
+    url: SITE.url,
+    description: SITE.description,
+    inLanguage: "zh-CN",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Kali Custom Lab — KDE 魔改 V5",
+    applicationCategory: "OperatingSystem",
+    operatingSystem: "Kali Linux 2026.3 (amd64)",
+    softwareVersion: "V5",
+    description:
+      "基于 KDE Plasma 6.7 的 Kali Linux 桌面定制镜像，fcitx5 输入法与 zsh 终端。",
+    url: `${SITE.url}/products/kde/`,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "CNY" },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      reviewCount: String(TOTALS.stars),
+    },
+  },
+];
+---
+
+<BaseLayout title={`${SITE.name} · Kali Linux 桌面定制`} jsonLd={jsonLd}>
+  <NxHero />
+  <NxStatement />
+  <NxEditions />
+
+  <Section tone="deep">
+    <SectionHeading
+      index="03"
+      kicker="V5 变化"
+      title="换输入法、换终端、再减一轮"
+      lead="从 Plasma 6 到 Plasma 6.7，输入法换成 fcitx5 + 雾凇拼音，终端换成 zsh + zim + powerlevel10k，并移除了高开销的面板模糊插件。"
+    />
+    <Highlights />
+  </Section>
+
+  <Section>
+    <SectionHeading
+      index="04"
+      kicker="AI 终端"
+      title="把自然语言变成命令"
+      lead="五个场景全部来自作者的实测演示，输入的中文原话逐字保留。"
+    />
+    <AiTeaser />
+  </Section>
+
+  <!-- 截图墙出血铺满，故意不套 shell -->
+  <section id="showcase" class="border-y border-line py-0">
+    <div class="flex items-end justify-between gap-4 px-6 pb-6 pt-12 sm:px-10">
+      <div>
+        <p class="label-caps">05 / 界面</p>
+        <h2 class="mt-2 text-h2 font-display text-ink">真实截图，不是渲染图</h2>
+      </div>
+      <Button href="/products/kde/" variant="secondary" size="sm">
+        查看全部
+      </Button>
+    </div>
+    <GalleryPreview />
+  </section>
+
+  <Section>
+    <SectionHeading
+      index="06"
+      kicker="项目历程"
+      title="七年前从一套桌面配置开始"
+      lead="从 DRT 安全团队的第一版 KDE 美化，到今天跟随 Kali 2026.3 的 V5。"
+    />
+    <TimelineStrip />
+  </Section>
+
+  <Section tone="deep">
+    <SectionHeading
+      index="07"
+      kicker="下载"
+      title={`当前版本 · ${PRODUCTS.kde.versionLabel}`}
+      lead={`基于 ${CURRENT_VERSION.baseSystem}。V5 起不再预装第三方工具，只提供桌面与配置。`}
+    >
+      <Button slot="action" href="/download/" variant="secondary" size="sm">
+        全部版本与网盘
+      </Button>
+    </SectionHeading>
+    <DownloadCallout />
+  </Section>
+
+  <Section>
+    <SectionHeading
+      index="08"
+      kicker="常见问题"
+      title="装之前最容易踩的坑"
+      lead="下面这些问题的答案都来自仓库里真实的 issue 与作者回复。"
+    >
+      <Button slot="action" href="/docs/faq/" variant="secondary" size="sm">
+        全部问题
+      </Button>
+    </SectionHeading>
+    <FaqTeaser />
+  </Section>
+
+  <Section tone="deep">
+    <SectionHeading
+      index="09"
+      kicker="仓库"
+      title="项目在 GitHub 上"
+      lead={`数据快照于 ${SNAPSHOT_DATE}。两个仓库均以 MIT 协议开源。`}
+    />
+    <RepoStats />
+  </Section>
+
+  <Lightbox />
+</BaseLayout>

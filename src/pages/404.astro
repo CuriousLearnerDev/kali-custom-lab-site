@@ -1,0 +1,44 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Button from "@/components/ui/Button.astro";
+
+const links = [
+  { href: "/", label: "首页" },
+  { href: "/products/kde/", label: "KDE 版 V5" },
+  { href: "/products/i3wm/", label: "i3wm 版" },
+  { href: "/download/", label: "下载中心" },
+  { href: "/docs/", label: "文档中心" },
+];
+---
+
+<BaseLayout title="页面不存在" description="这个地址没有对应的页面。">
+  <section class="relative flex min-h-[70vh] items-center overflow-hidden py-20">
+
+    <div class="shell relative text-center">
+      <p class="font-mono text-[13px] tracking-[0.2em] text-faint">HTTP 404</p>
+      <h1 class="mt-4 text-[clamp(30px,5vw,52px)] font-display leading-tight text-ink">
+        这个页面<span class="underline-accent">不存在</span>
+      </h1>
+      <p class="lead mx-auto mt-4 max-w-[44ch]">
+        地址可能写错了，或者旧版本的页面已经合并到别处。
+      </p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <Button href="/" size="lg">回到首页</Button>
+        <Button href="/docs/" variant="secondary" size="lg">查文档</Button>
+      </div>
+
+      <ul class="mx-auto mt-10 flex max-w-lg flex-wrap justify-center gap-x-5 gap-y-2 font-mono text-[12px]">
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.href} class="text-breeze-700 underline decoration-breeze-300 underline-offset-2 hover:text-breeze-600">
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

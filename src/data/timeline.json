@@ -1,0 +1,39 @@
+{
+  "TIMELINE": [
+    {
+      "time": "2021–2022",
+      "title": "在 DRT 安全团队发布首个 KDE 美化版",
+      "detail": "最早的一版 Kali KDE 桌面美化，配置积累保存在早期的 Configuration 仓库里。"
+    },
+    {
+      "time": "2023",
+      "title": "推出 i3 魔改版",
+      "detail": "超轻量的平铺桌面方案，适合高级用户；全键盘工作流，资源占用比默认 Xfce4 更低。",
+      "versionId": "i3"
+    },
+    {
+      "time": "2024 年 5 月",
+      "title": "KDE 魔改 V2 发布",
+      "detail": "第一个被大量使用的版本，确立了 Layan + Reversal + Windows11-Endless 的外观基线。",
+      "versionId": "v2"
+    },
+    {
+      "time": "2024 年底",
+      "title": "在知攻善防实验室推出 V3",
+      "detail": "按虚拟机性能重做美化，去掉消耗资源的效果，重点优化虚拟机里的运行流畅度。",
+      "versionId": "v3"
+    },
+    {
+      "time": "2025 年 10 月",
+      "title": "V4：升级到 KDE Plasma 6",
+      "detail": "跟随 Kali 2025.3 进入 Plasma 6，去掉冗余插件与启动项，并集成 Gemini CLI 让终端可以自然语言操作。",
+      "versionId": "v4"
+    },
+    {
+      "time": "2026 年",
+      "title": "V5：升级到 KDE Plasma 6.7",
+      "detail": "重构输入法方案（fcitx5 + 雾凇拼音）、精简启动项，物理机与虚拟机双端适配；内核跟到 7.1.5。",
+      "versionId": "v5"
+    }
+  ]
+}

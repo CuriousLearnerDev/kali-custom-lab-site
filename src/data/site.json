@@ -1,0 +1,24 @@
+{
+  "SITE": {
+    "name": "Kali Custom Lab",
+    "shortName": "Kali Lab",
+    "url": "https://kali-lab.example.com",
+    "lang": "zh-CN",
+    "tagline": "把 Kali 桌面做成你每天愿意用的样子",
+    "description": "Kali Linux 桌面魔改方案：KDE Plasma 6.7 版（V5）与 i3wm 版两套开箱即用的桌面定制系统，含 fcitx5 输入法、zsh 终端与虚拟机优化。",
+    "author": {
+      "name": "W啥都学",
+      "handle": "CuriousLearnerDev",
+      "url": "https://github.com/CuriousLearnerDev",
+      "blog": "https://www.zssnp.top"
+    },
+    "githubOrg": "CuriousLearnerDev"
+  },
+  "DISCLAIMER": {
+    "short": "本站为社区项目展示页，与 Offensive Security / Kali Linux 官方无关。",
+    "affiliation": "Kali Custom Lab 由个人开发者维护，与 Offensive Security、Kali Linux 官方没有任何隶属或背书关系。",
+    "license": "两个项目仓库均以 MIT 协议开源（LICENSE 文件见各仓库根目录）。你可以自由使用、修改、再分发，保留原始版权声明即可。",
+    "usage": "V5 起镜像不再预装第三方渗透工具，只提供桌面环境与配置；如需工具请从官方渠道自行安装。本站仅提供项目作者的下载渠道信息，不提供文件托管。系统仅限用于获得书面授权的安全测试与学习。",
+    "screenshots": "页面截图的版权归项目作者所有，取自其公开仓库与 README 中的公开素材。"
+  }
+}

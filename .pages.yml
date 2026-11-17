@@ -1,0 +1,264 @@
+# Pages CMS 配置（pagescms.org）
+# 后台地址：https://app.pagescms.org → 用 GitHub 登录 → 授权本仓库
+#
+# 改完点「保存」= 往仓库提交一次 commit，触发重新构建，1–2 分钟后线上生效。
+
+media:
+  input: public/shots
+  output: /shots
+
+content:
+  # ---------------- 下载渠道（最常改） ----------------
+  - name: downloads
+    label: 下载渠道
+    type: file
+    path: src/data/downloads.json
+    fields:
+      - name: EDITIONS
+        label: 版本与下载
+        type: object
+        list:
+          collapsible: true
+        fields:
+          - name: id
+            label: 内部 ID（唯一，别改）
+            type: string
+            description: 例如 v5-full / v5-system / v4-full
+          - name: versionId
+            label: 所属版本
+            type: string
+            description: 只能是 v5 / v4 / v3 / v2 / i3
+          - name: name
+            label: 名称
+            type: string
+          - name: archiveSize
+            label: 压缩包大小
+            type: string
+            description: 例如 6.20 GB；没发布就填「待发布」
+          - name: extractedSize
+            label: 解压后大小
+            type: string
+          - name: summary
+            label: 一句话简介
+            type: text
+          - name: status
+            label: 下载状态
+            type: string
+            description: available（可下载）或 pending（待发布）
+          - name: notes
+            label: 备注（每行一条）
+            type: string
+            list: true
+          - name: channels
+            label: 网盘渠道
+            type: object
+            list: true
+            fields:
+              - name: provider
+                label: 网盘
+                type: string
+                description: quark（夸克）/ baidu（百度）/ tianyi（天翼）
+              - name: url
+                label: 链接
+                type: string
+              - name: code
+                label: 提取码
+                type: string
+              - name: status
+                label: 链接状态
+                type: string
+                description: ok（已验证）或 unverified（未核对）
+              - name: lastVerified
+                label: 最后核对日期
+                type: string
+                description: 格式 2026-11-17
+              - name: source
+                label: 溯源
+                type: string
+                description: 例如 readme#v5-系统版
+
+  # ---------------- 版本信息 ----------------
+  - name: versions
+    label: 版本信息
+    type: file
+    path: src/data/versions.json
+    fields:
+      - name: VERSIONS
+        label: 版本列表
+        type: object
+        list:
+          collapsible: true
+        fields:
+          - name: id
+            label: 内部 ID
+            type: string
+            description: v5 / v4 / v3 / v2 / i3，改了会牵连下载页
+          - name: label
+            label: 显示名
+            type: string
+          - name: current
+            label: 是否为当前版本
+            type: boolean
+            description: 整个列表只能有一个 true
+          - name: baseSystem
+            label: 基础系统
+            type: string
+          - name: desktop
+            label: 桌面环境
+            type: string
+          - name: kernel
+            label: 内核
+            type: string
+          - name: firmware
+            label: 固件
+            type: string
+          - name: defaultUser
+            label: 默认用户名
+            type: string
+          - name: defaultPassword
+            label: 默认密码
+            type: string
+          - name: releasedLabel
+            label: 发布时间（文字）
+            type: string
+            description: 例如「2026 年」
+          - name: releaseTag
+            label: GitHub Release 标签
+            type: string
+            description: 没有就留空
+          - name: releaseDate
+            label: GitHub Release 日期
+            type: string
+            description: 格式 2026-11-17，没有就留空
+          - name: releaseNote
+            label: Release 说明
+            type: text
+          - name: summary
+            label: 一句话总结
+            type: text
+          - name: changes
+            label: 本版变更（每行一条）
+            type: string
+            list: true
+
+  # ---------------- 常见问题 ----------------
+  - name: faq
+    label: 常见问题
+    type: file
+    path: src/data/faq.json
+    fields:
+      - name: FAQ
+        label: 问答列表
+        type: object
+        list:
+          collapsible: true
+        fields:
+          - name: id
+            label: 锚点 ID（唯一）
+            type: string
+            description: 会变成 /docs/faq/#这个值
+          - name: question
+            label: 问题
+            type: string
+          - name: answer
+            label: 回答
+            type: text
+          - name: severity
+            label: 重要程度
+            type: string
+            description: blocker（会挡住使用）/ common（常见）/ info（补充）
+          - name: featured
+            label: 首页精选
+            type: boolean
+          - name: relatedIssues
+            label: 关联 issue 编号
+            type: number
+            list: true
+          - name: detailHref
+            label: 相关文档链接
+            type: string
+            description: 例如 /docs/troubleshooting/
+
+  # ---------------- 站点与免责声明 ----------------
+  - name: site
+    label: 站点设置
+    type: file
+    path: src/data/site.json
+    fields:
+      - name: SITE
+        label: 站点信息
+        type: object
+        fields:
+          - name: name
+            label: 站点名
+            type: string
+          - name: shortName
+            label: 简称
+            type: string
+          - name: url
+            label: 正式域名
+            type: string
+            description: 影响 canonical / sitemap / OG 图，改完记得同步 astro.config.mjs
+          - name: lang
+            label: 语言
+            type: string
+          - name: tagline
+            label: 一句话标语
+            type: string
+          - name: description
+            label: 站点描述（SEO）
+            type: text
+          - name: githubOrg
+            label: GitHub 用户名
+            type: string
+          - name: author
+            label: 作者
+            type: object
+            fields:
+              - { name: name, label: 名字, type: string }
+              - { name: handle, label: GitHub 用户名, type: string }
+              - { name: url, label: GitHub 主页, type: string }
+              - { name: blog, label: 博客, type: string }
+      - name: DISCLAIMER
+        label: 免责声明
+        type: object
+        fields:
+          - { name: short, label: 简短版, type: text }
+          - { name: affiliation, label: 与官方无关, type: text }
+          - { name: license, label: 许可证说明, type: text }
+          - { name: usage, label: 使用范围, type: text }
+          - { name: screenshots, label: 截图版权, type: text }
+
+  # ---------------- 文档（MDX） ----------------
+  - name: docs
+    label: 文档
+    type: collection
+    path: src/content/docs
+    fields:
+      - name: title
+        label: 标题
+        type: string
+      - name: description
+        label: 摘要
+        type: text
+      - name: category
+        label: 分类
+        type: string
+        description: 入门 / 使用技巧 / 故障排查 / 常见问题
+      - name: order
+        label: 排序
+        type: number
+      - name: updated
+        label: 更新日期
+        type: date
+      - name: sources
+        label: 依据（每行一条）
+        type: string
+        list: true
+      - name: relatedIssues
+        label: 关联 issue 编号
+        type: number
+        list: true
+      - name: body
+        label: 正文
+        type: rich-text

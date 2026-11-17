@@ -1,0 +1,211 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/ui/Section.astro";
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import GlassCard from "@/components/ui/GlassCard.astro";
+import Button from "@/components/ui/Button.astro";
+import Note from "@/components/ui/Note.astro";
+import TimelineStrip from "@/components/home/TimelineStrip.astro";
+import { SITE, DISCLAIMER } from "@/data/site";
+import { PRODUCTS, PRODUCT_LIST } from "@/data/products";
+import { getAuthor, getRepo, getOtherRepos, stat, SNAPSHOT_DATE, SNAPSHOT_STALE } from "@/lib/github";
+
+const author = getAuthor();
+const others = getOtherRepos();
+const totalOtherStars = others.reduce((sum, r) => sum + r.stars, 0);
+
+const feedback = [
+  { title: "说明是哪一套", body: "KDE 版还是 i3wm 版，以及具体版本（V4 / V3 / V2）。" },
+  { title: "写清运行环境", body: "虚拟机软件与版本、宿主机系统、分配的内存和 CPU。" },
+  { title: "给复现步骤", body: "从哪个动作开始出问题，最好附上终端报错原文。" },
+  { title: "加截图", body: "黑屏、报错弹窗这类问题，一张图胜过一段描述。" },
+];
+---
+
+<BaseLayout
+  title="关于项目与作者"
+  description="Kali Custom Lab 由 CuriousLearnerDev（W啥都学）维护，从 2021 年的 KDE 桌面配置一路做到今天的 V4。"
+  ogImage="/og/about.png"
+>
+  <section class="relative overflow-hidden pb-10 pt-12 sm:pt-16">
+    <div class="shell relative">
+      <p class="label-caps">About</p>
+      <h1 class="mt-3 text-[clamp(30px,4vw,44px)] font-display leading-[1.15] text-ink">
+        一个人维护了七年的桌面项目
+      </h1>
+      <p class="lead mt-3 max-w-[58ch]">
+        两套 Kali 桌面方案、一个 GitHub 账号、四代版本。这里说明项目是谁在做、
+        按什么原则做，以及使用前必须知道的边界。
+      </p>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-[1.1fr_1fr]">
+        <GlassCard padding="lg">
+          <div class="flex items-center gap-4">
+            <span class="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-breeze-600 to-violet-500 font-display text-[18px] font-semibold text-white">
+              {author.name?.slice(0, 1) ?? "W"}
+            </span>
+            <div>
+              <p class="font-display text-[18px] font-semibold text-ink">{author.name}</p>
+              <p class="font-mono text-[12px] text-muted">@{author.login}</p>
+            </div>
+          </div>
+
+          <p class="mt-4 text-[13.5px] leading-relaxed text-muted">
+            「{author.bio}」
+          </p>
+
+          <dl class="mt-5 grid grid-cols-3 gap-4 border-t border-line pt-4 font-mono text-[12px]">
+            <div>
+              <dt class="text-faint">Followers</dt>
+              <dd class="mt-0.5 text-[18px] font-medium text-ink tabular-nums">{stat(author.followers)}</dd>
+            </div>
+            <div>
+              <dt class="text-faint">公开仓库</dt>
+              <dd class="mt-0.5 text-[18px] font-medium text-ink tabular-nums">{stat(author.public_repos)}</dd>
+            </div>
+            <div>
+              <dt class="text-faint">注册于</dt>
+              <dd class="mt-0.5 text-[18px] font-medium text-ink tabular-nums">
+                {author.created_at?.slice(0, 4)}
+              </dd>
+            </div>
+          </dl>
+
+          <div class="mt-5 flex flex-wrap gap-3 font-mono text-[12px]">
+            <a href={author.html_url} target="_blank" rel="noopener noreferrer" class="text-breeze-700 underline decoration-breeze-300 underline-offset-2">
+              GitHub
+            </a>
+            <a href={author.blog || SITE.author.blog} target="_blank" rel="noopener noreferrer" class="text-breeze-700 underline decoration-breeze-300 underline-offset-2">
+              博客 {author.blog ? new URL(author.blog).hostname : "zssnp.top"}
+            </a>
+          </div>
+        </GlassCard>
+
+        <GlassCard padding="lg">
+          <p class="label-caps">两个仓库</p>
+          <ul class="mt-4 space-y-3">
+            {
+              PRODUCT_LIST.map((product) => {
+                const repo = getRepo(product.key);
+                return (
+                  <li class="border-b border-line pb-3 last:border-0 last:pb-0">
+                    <div class="flex items-baseline justify-between gap-3">
+                      <a
+                        href={product.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-[13.5px] font-medium text-ink hover:text-breeze-700"
+                      >
+                        {product.repo}
+                      </a>
+                      <span class="shrink-0 font-mono text-[11.5px] text-muted">
+                        {stat(repo.stars)} ★
+                      </span>
+                    </div>
+                    <p class="mt-1 font-mono text-[11px] text-faint">
+                      {stat(repo.forks)} fork · {repo.open_issues} open issues · 最后 push {repo.pushed_at?.slice(0, 10)}
+                    </p>
+                  </li>
+                );
+              })
+            }
+          </ul>
+          <p class="mt-4 font-mono text-[11px] text-faint">
+            数据快照于 {SNAPSHOT_DATE}{SNAPSHOT_STALE ? "（已过期，建议重新同步）" : ""}
+          </p>
+        </GlassCard>
+      </div>
+    </div>
+  </section>
+
+  <Section tone="deep">
+    <SectionHeading
+      index="01"
+      kicker="项目历程"
+      title="从一套配置文件开始"
+      lead="每个版本背后的取舍，作者都写在 README 里。"
+    />
+    <TimelineStrip />
+  </Section>
+
+  <Section>
+    <SectionHeading
+      index="02"
+      kicker="反馈"
+      title="提 issue 的正确姿势"
+      lead="仓库里 15 条 issue 有一半因为缺少信息而无法处理。"
+    />
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        feedback.map((item, i) => (
+          <div class="glass-flat p-5">
+            <span class="font-mono text-[11px] text-breeze-600">0{i + 1}</span>
+            <h3 class="mt-1.5 font-display text-[14.5px] font-medium text-ink">{item.title}</h3>
+            <p class="mt-1.5 text-[13px] leading-relaxed text-muted">{item.body}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="mt-6">
+      <Button href={PRODUCTS.kde.issuesUrl} variant="secondary" external>
+        到 GitHub 提 issue
+      </Button>
+    </div>
+  </Section>
+
+  <Section tone="deep">
+    <SectionHeading
+      index="03"
+      kicker="作者的其他项目"
+      title="不只是桌面美化"
+      lead={`按 star 数排序的公开仓库，合计 ${stat(totalOtherStars)} ★。`}
+    />
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        others.map((repo) => (
+          <li class="min-w-0">
+            <a
+              href={repo.html_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="glass-flat glass-hover block h-full p-5"
+            >
+              <div class="flex items-baseline justify-between gap-3">
+                <span class="truncate font-mono text-[13px] font-medium text-ink">
+                  {repo.name}
+                </span>
+                <span class="shrink-0 font-mono text-[11.5px] text-muted">{stat(repo.stars)} ★</span>
+              </div>
+              <p class="mt-2 line-clamp-2 text-[12.5px] leading-relaxed text-muted">
+                {repo.description ?? "（无描述）"}
+              </p>
+              {repo.language && (
+                <p class="mt-2 font-mono text-[11px] text-faint">{repo.language}</p>
+              )}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+
+  <Section id="legal">
+    <SectionHeading
+      index="04"
+      kicker="免责与法务"
+      title="这些边界请务必看清"
+      lead="这一段不是套话，是这套镜像实际的法律处境。"
+    />
+    <div class="space-y-4">
+      <Note variant="warn" title="与 Kali 官方无关">{DISCLAIMER.affiliation}</Note>
+      <Note variant="warn" title="仓库公开，但没有许可证">{DISCLAIMER.license}</Note>
+      <Note variant="danger" title="第三方工具版权">{DISCLAIMER.usage}</Note>
+      <Note variant="info" title="截图版权">{DISCLAIMER.screenshots}</Note>
+    </div>
+
+    <p class="mt-8 font-mono text-[11.5px] leading-relaxed text-faint">
+      本站为项目展示页，由社区维护。页面内所有版本号、体积、网盘链接与提取码
+      均转录自仓库 README；若与上游不一致，以仓库为准。
+    </p>
+  </Section>
+</BaseLayout>
