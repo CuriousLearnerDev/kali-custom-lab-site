@@ -150,6 +150,8 @@ def main() -> None:
 
         out = FONT_OUT / f"NotoSansSC-{weight}.woff2"
         instance.flavor = "woff2"
+        # 不写入生成时间戳，保证同样输入产出同样字节 —— 否则每次构建都会弄脏 git
+        instance.recalcTimestamp = False
         instance.save(str(out))
         print(f"  → public/fonts/{out.name}  {out.stat().st_size / 1024:.0f} KB")
 
