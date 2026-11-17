@@ -1,15 +1,8 @@
 ---
 import { Picture } from "astro:assets";
-import { shots } from "@/data/shots";
+import { GALLERY_SHOTS } from "@/data/home";
 
-const items = shots([
-  "v5-ui-03",
-  "v5-ui-01",
-  "v5-ui-11",
-  "v5-ui-05",
-  "v5-ui-09",
-  "i3wm-desktop",
-]);
+const items = GALLERY_SHOTS;
 ---
 
 <!-- 截图墙：出血铺满，1px 缝隙当分隔线，不加任何卡片装饰 -->

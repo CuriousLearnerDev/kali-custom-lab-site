@@ -1,16 +1,14 @@
 # Pages CMS 配置（pagescms.org）
-# 后台地址：https://app.pagescms.org → 用 GitHub 登录 → 授权本仓库
-#
+# 后台地址：https://app.pagescms.org → GitHub 登录 → 授权本仓库
 # 改完点「保存」= 往仓库提交一次 commit，触发重新构建，1–2 分钟后线上生效。
 
 media:
-  # 截图上传目录：换图时请上传到 src/assets/screens/，文件名必须与 slug 一致
+  # 截图上传目录：换图时文件名必须与「截图」里的 slug 一致
   input: src/assets/screens
   output: /screens
 
 content:
-  # ---------------- 下载渠道（最常改） ----------------
-
+  # ==================== 下载渠道 ====================
   - name: downloads
     label: 下载渠道
     type: file
@@ -38,7 +36,7 @@ content:
           - name: archiveSize
             label: 压缩包大小
             type: string
-            description: 例如 6.20 GB；没发布就填「待发布」
+            description: 例如 6.20 GB；还没发布就填「待发布」
           - name: extractedSize
             label: 解压后大小
             type: string
@@ -84,8 +82,7 @@ content:
                 type: string
                 description: 例如 readme#v5-系统版
 
-  # ---------------- 版本信息 ----------------
-
+  # ==================== 版本信息 ====================
   - name: versions
     label: 版本信息
     type: file
@@ -101,9 +98,9 @@ content:
             summary: "{fields.label} · {fields.baseSystem}"
         fields:
           - name: id
-            label: 内部 ID
+            label: 内部 ID（别改）
             type: string
-            description: v5 / v4 / v3 / v2 / i3，改了会牵连下载页
+            description: v5 / v4 / v3 / v2 / i3。改了下拉页会跟着变
           - name: label
             label: 显示名
             type: string
@@ -152,8 +149,7 @@ content:
             type: string
             list: true
 
-  # ---------------- 常见问题 ----------------
-
+  # ==================== 常见问题 ====================
   - name: faq
     label: 常见问题
     type: file
@@ -193,8 +189,58 @@ content:
             type: string
             description: 例如 /docs/troubleshooting/
 
-  # ---------------- 站点与免责声明 ----------------
+  # ==================== 首页图片 ====================
+  - name: home
+    label: 首页图片
+    type: file
+    path: src/data/home.json
+    fields:
+      - name: HERO
+        label: 首屏大图
+        type: string
+        description: 填「截图」里的 slug，例如 v5-ui-08。这是首页第一屏铺满整屏的背景
+      - name: EDITIONS
+        label: 两条产品线的主图
+        type: object
+        fields:
+          - name: kde
+            label: KDE 版
+            type: string
+            description: 例如 v5-ui-01
+          - name: i3
+            label: i3wm 版
+            type: string
+            description: 例如 i3wm-desktop
+      - name: GALLERY
+        label: 截图墙（顺序就是显示顺序）
+        type: string
+        list: true
+        description: 每行一个 slug，建议 6 个
+      - name: AI
+        label: AI 终端专题
+        type: object
+        fields:
+          - name: MAIN
+            label: 主图
+            type: string
+          - name: SECONDARY
+            label: 副图
+            type: string
+      - name: TOPBARS
+        label: 顶栏对比（三代）
+        type: object
+        fields:
+          - name: PLASMA5
+            label: Plasma 5（v3）
+            type: string
+          - name: PLASMA6
+            label: Plasma 6（v4）
+            type: string
+          - name: PLASMA67
+            label: Plasma 6.7（V5）
+            type: string
 
+  # ==================== 截图 ====================
   - name: shots
     label: 截图
     type: file
@@ -248,8 +294,7 @@ content:
             label: 远程原图地址（一般不用改）
             type: string
 
-  # ---------------- 文档（MDX） ----------------
-
+  # ==================== 文档 ====================
   - name: docs
     label: 文档
     type: collection
@@ -283,6 +328,7 @@ content:
         label: 正文
         type: rich-text
 
+  # ==================== 站点设置 ====================
   - name: site
     label: 站点设置
     type: file
@@ -301,7 +347,7 @@ content:
           - name: url
             label: 正式域名
             type: string
-            description: 影响 canonical / sitemap / OG 图，改完记得同步 astro.config.mjs
+            description: 影响 canonical / sitemap / OG 图。改完还要同步 astro.config.mjs 里的 site
           - name: lang
             label: 语言
             type: string
@@ -331,5 +377,3 @@ content:
           - { name: license, label: 许可证说明, type: text }
           - { name: usage, label: 使用范围, type: text }
           - { name: screenshots, label: 截图版权, type: text }
-
-  # ---------------- 截图 ----------------

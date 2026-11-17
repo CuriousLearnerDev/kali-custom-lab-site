@@ -1,11 +1,11 @@
 ---
 import { Picture } from "astro:assets";
 import { AI_SCENARIOS } from "@/data/tools";
-import { shot } from "@/data/shots";
+import { AI_SHOTS } from "@/data/home";
 import WindowFrame from "@/components/media/WindowFrame.astro";
 
-const main = shot("v4-ai-recon-01");
-const secondary = shot("v4-ai-fstab-02");
+const main = AI_SHOTS.MAIN;
+const secondary = AI_SHOTS.SECONDARY;
 ---
 
 <div

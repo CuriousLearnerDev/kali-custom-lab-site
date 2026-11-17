@@ -1,6 +1,6 @@
 ---
 import { Picture } from "astro:assets";
-import { shot } from "@/data/shots";
+import { EDITION_SHOTS } from "@/data/home";
 import { PRODUCT_LIST } from "@/data/products";
 import { VERSIONS } from "@/data/versions";
 import { getRepo } from "@/lib/github";
@@ -9,7 +9,7 @@ const rows = [
   {
     product: PRODUCT_LIST[0],
     version: VERSIONS.find((v) => v.id === "v5"),
-    image: shot("v5-ui-01"),
+    image: EDITION_SHOTS.kde,
     index: "01",
     points: ["Plasma 6.7 + fcitx5 雾凇拼音", "Gemini CLI 集成在终端里", "纯净 Kali 基础，未预装第三方工具"],
     href: "/products/kde/",
@@ -17,7 +17,7 @@ const rows = [
   {
     product: PRODUCT_LIST[1],
     version: VERSIONS.find((v) => v.id === "i3"),
-    image: shot("i3wm-desktop"),
+    image: EDITION_SHOTS.i3,
     index: "02",
     points: ["i3wm + polybar 平铺桌面", "全键盘工作流，$mod = Alt", "比默认 Xfce4 更省资源"],
     href: "/products/i3wm/",

@@ -1,0 +1,25 @@
+{
+  "$comment": "首页各位置用哪张截图。值填 src/data/shots.json 里的 slug（不是文件名）。后台可编辑。",
+  "HERO": "v5-ui-08",
+  "EDITIONS": {
+    "kde": "v5-ui-01",
+    "i3": "i3wm-desktop"
+  },
+  "GALLERY": [
+    "v5-ui-03",
+    "v5-ui-01",
+    "v5-ui-11",
+    "v5-ui-05",
+    "v5-ui-09",
+    "i3wm-desktop"
+  ],
+  "AI": {
+    "MAIN": "v4-ai-recon-01",
+    "SECONDARY": "v4-ai-fstab-02"
+  },
+  "TOPBARS": {
+    "PLASMA5": "plasma5-topbar",
+    "PLASMA6": "plasma6-topbar",
+    "PLASMA67": "v5-topbar"
+  }
+}

@@ -1,11 +1,11 @@
 ---
 import { Picture } from "astro:assets";
-import { shot } from "@/data/shots";
+import { HERO_SHOT as bg } from "@/data/home";
 import { CURRENT_VERSION } from "@/data/versions";
 import { PRODUCTS } from "@/data/products";
 import { getReleases } from "@/lib/github";
 
-const bg = shot("v5-ui-08");
+
 const latest = getReleases("kde")[0];
 ---
 

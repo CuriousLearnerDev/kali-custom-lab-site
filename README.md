@@ -107,6 +107,27 @@ npm run validate     # 内容/素材/链接校验
 npm run fonts:subset
 ```
 
+### 换首页大图 / 截图墙
+
+首页每个位置用哪张图，由 `src/data/home.json` 决定（后台「首页图片」模块可改）：
+
+| 配置项 | 对应位置 |
+| --- | --- |
+| `HERO` | 首屏铺满整屏的背景图 |
+| `EDITIONS.kde` / `.i3` | 两条产品线通栏的主图 |
+| `GALLERY` | 截图墙的 6 张（数组顺序 = 显示顺序） |
+| `AI.MAIN` / `.SECONDARY` | AI 终端专题的主图与副图 |
+| `TOPBARS` | 三代顶栏对比图 |
+
+值填 `shots.json` 里的 **slug**（不是文件名）。改了不存在的 slug，构建会直接报错并列出可用的 slug。
+
+**发新版本时的完整流程**：
+
+1. 把新截图放进 `src/assets/screens/`，文件名就是新 slug，例如 `v6-ui-01.webp`
+2. 后台「截图」→ 添加一条，slug 填 `v6-ui-01`，写标题和描述
+3. 后台「首页图片」→ 把 `HERO` / `EDITIONS` / `GALLERY` 里的值换成新 slug
+4. 保存 → 自动构建 → 上线
+
 ### 加 / 换截图
 
 图片和元数据是分开的两份东西：

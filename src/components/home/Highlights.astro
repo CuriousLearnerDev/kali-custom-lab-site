@@ -1,11 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import GlassCard from "@/components/ui/GlassCard.astro";
-import { shot } from "@/data/shots";
+import { TOPBAR_SHOTS } from "@/data/home";
 
-const plasma5 = shot("plasma5-topbar");
-const plasma6 = shot("plasma6-topbar");
-const plasma67 = shot("v5-topbar");
+const plasma5 = TOPBAR_SHOTS.PLASMA5;
+const plasma6 = TOPBAR_SHOTS.PLASMA6;
+const plasma67 = TOPBAR_SHOTS.PLASMA67;
 
 const items = [
   {
