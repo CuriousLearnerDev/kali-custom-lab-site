@@ -70,25 +70,7 @@ const ldJson = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
         />
       ))
     }
-    <script is:inline>
-      // 首屏渲染前决定主题：localStorage 优先，否则跟随系统
-      (function () {
-        var root = document.documentElement;
-        var choice = "dark";
-        try {
-          var saved = localStorage.getItem("theme-choice");
-          if (saved === "light" || saved === "dark" || saved === "auto") choice = saved;
-        } catch (e) {}
-        var dark =
-          choice === "dark" ||
-          (choice === "auto" &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches);
-        root.dataset.themeChoice = choice;
-        root.dataset.theme = dark ? "dark" : "light";
-        var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute("content", dark ? "#14171c" : "#f4f6fb");
-      })();
-    </script>
+    <script is:inline src="/theme-init.js"></script>
   </head>
   <body>
     <div class="page-bg" aria-hidden="true">
